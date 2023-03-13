@@ -1,0 +1,26 @@
+1. Create a component ( A component has .html and .ts for displaying and business logic for the view only.)
+    This is for a single page
+-> ng generate component components/<new component name>
+
+2. run the web
+ -> ng serve
+ -> go to any web browser, and localhost:4200
+
+3. git 
+ -> You must create a new branch from main branch. This will copy everything to the new branch.
+        -> git branch : check all the branches and current branch
+        -> git branch <new branch name> : create a new branch
+        -> git checkout <branch name> : move on to the branch
+    Develop as you go.
+    git pull from the remote repository before git push from the new branch.
+    After that, go to GitHub, click pull request. This will check for conflict. 
+    If no problem, merge with the main source code.
+
+    After that, checkout to main branch (git checkout main)
+    then you must pull from remote repository (git pull).
+    
+    Finally, remove the branch used. (git branch -d <branch name>)
+
+    **Repeat this process every time you want to develop**
+    
+    *** If you pull and push from main branch, we all will encounter conflict and delay the process. ***
