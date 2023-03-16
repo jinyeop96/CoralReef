@@ -13,6 +13,7 @@ import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { NewsComponent } from './components/news/news.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NewsComponent } from './components/news/news.component';
     AboutComponent,
     LoginComponent,
     ChartComponent,
-    NewsComponent
+    NewsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
