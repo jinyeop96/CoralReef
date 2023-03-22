@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Constants } from '../global/constants';
+import { ILatLon, IWeather } from '../global/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -8,18 +9,39 @@ import { Constants } from '../global/constants';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-
-  // Parameters for passing with API call
-  parameters: string = "2023-03-15T00:00:00Z--2023-03-18T00:00:00Z:PT1H/t_2m:C/52.520551,13.461804/json";
   
-  getWeatherData(){
+ /**
+  * For more info : https://www.meteomatics.com/en/api/getting-started/
+  * 
+  * API calls to retrieve weather data of designated date, time and interval.
+  * @param from the start date and time
+  * @param intervalHours interval hours
+  * @param to the end date and time
+  * @param lat latitude of the location
+  * @param lon longitude of the location
+  * @returns Observable containing the weather data
+  */
+  getWeatherData(from: string, intervalHours: number, to: string, lat: number, lon: number){
+    // Set the date and time interval
+    const parameters = from + "--" + to + ":PT"+intervalHours+"H/t_2m:C/" + lat + "," + lon + "/json";;
+    
+    // Setting the HttpHeader for API call
     const headers = new HttpHeaders()
       .set("Content-type", "application/json")
       .set('Authorization', "Basic " + window.btoa("monashuniversity_oh:K4QN9hlP1p"));
 
-    return this.http.get(Constants.API_WEATHER_ENDPOINT + this.parameters, { headers: headers });
-    
+    // Get data
+    return this.http.get<IWeather>(Constants.API_WEATHER_ENDPOINT + parameters, { headers: headers });
+  }
 
+  /**
+   * API call to retrieve the lat and lon of the location
+   * @param location a location 
+   * @returns Observable containing the lat and lon info.
+   */
+  getLatAndLong(location: string) {
+    const parameters = "q=" + location + "&limit=1&appid=" + "5d0c8305da2579391b95c3ca3195f7d2";
+    return this.http.get<ILatLon[]>(Constants.API_LAT_LONG_ENDPOINT + parameters);
   }
 
 }

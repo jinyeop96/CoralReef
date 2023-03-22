@@ -1,4 +1,21 @@
 <p>chart works!</p>
 
+<input type="text" [(ngModel)]="location">
+
+<button (click)="getWeather()">Get Weather</button>
 
 
+<div>
+    <table>
+        <thead>
+            <th>Time</th>
+            
+            <th>Temperature</th>
+        </thead>
+
+        <tr *ngFor="let result of results">
+            <td>{{result.date}}</td>
+            <td>{{result.value}}</td>
+        </tr>
+    </table>
+</div>
