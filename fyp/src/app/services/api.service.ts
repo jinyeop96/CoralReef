@@ -9,32 +9,33 @@ import { ILatLon, IWeather } from '../global/interfaces';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-  
- /**
-  * For more info : https://www.meteomatics.com/en/api/getting-started/
-  * 
-  * API calls to retrieve weather data of designated date, time and interval.
-  * @param from the start date and time
-  * @param intervalHours interval hours
-  * @param to the end date and time
-  * @param lat latitude of the location
-  * @param lon longitude of the location
-  * @returns Observable containing the weather data
-  */
-  getWeatherData(from: string, intervalHours: number, to: string, lat: number, lon: number){
+ 
+  /**
+   * Retrieves air and marine forecast of designated location
+   * 
+   * For more information : https://www.weatherapi.com/docs/#intro-request
+   * 
+   * @param location a target location
+   * @param days number of days of forecast
+   * @returns Observable containing air and marine forecast data
+   */
+  getWeatherData(location: string, days: number){
     // Set the date and time interval
-    const parameters = from + "--" + to + ":PT"+intervalHours+"H/t_2m:C/" + lat + "," + lon + "/json";;
+    const parameters = "marine.json?key=" + Constants.API_WEATHER_KEY + "&q=" + location + "&days=" + days + "&aqi=yes&alerts=no";
     
-    // Setting the HttpHeader for API call
-    const headers = new HttpHeaders()
-      .set("Content-type", "application/json")
-      .set('Authorization', "Basic " + window.btoa("monashuniversity_oh:K4QN9hlP1p"));
+    /**
+     * HttpHeader set up
+     * const headers = new HttpHeaders()
+     *   .set("Content-type", "application/json")
+     *   .set('Authorization', "Basic " + window.btoa("monashuniversity_oh:K4QN9hlP1p"));
+     */
 
-    // Get data
-    return this.http.get<IWeather>(Constants.API_WEATHER_ENDPOINT + parameters, { headers: headers });
+    return this.http.get<IWeather>(Constants.API_WEATHER_ENDPOINT + parameters);
   }
 
   /**
+   *** DEPRECATED ****
+   * 
    * API call to retrieve the lat and lon of the location
    * @param location a location 
    * @returns Observable containing the lat and lon info.
@@ -43,5 +44,7 @@ export class ApiService {
     const parameters = "q=" + location + "&limit=1&appid=" + "5d0c8305da2579391b95c3ca3195f7d2";
     return this.http.get<ILatLon[]>(Constants.API_LAT_LONG_ENDPOINT + parameters);
   }
+
+  
 
 }

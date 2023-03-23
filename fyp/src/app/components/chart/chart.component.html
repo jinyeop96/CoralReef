@@ -5,17 +5,21 @@
 <button (click)="getWeather()">Get Weather</button>
 
 
-<div>
-    <table>
-        <thead>
-            <th>Time</th>
-            
-            <th>Temperature</th>
-        </thead>
 
-        <tr *ngFor="let result of results">
-            <td>{{result.date}}</td>
-            <td>{{result.value}}</td>
-        </tr>
-    </table>
+<div>
+    <ul>
+        <li *ngFor="let day of resultDays">
+            {{day.date}}
+            <ul>
+                <li>
+                    Time | Air Temp | Water Temp
+                </li>
+            </ul>
+            <ul>
+                <li *ngFor="let hour of day.hour">
+                {{hour.time}} | {{hour.temp_c}}°C | {{hour.water_temp_c}}°C
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>
