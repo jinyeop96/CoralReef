@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { IWeather, ILatLon, IData, IDate } from 'src/app/global/interfaces';
+import { IWeather, ILatLon, ILocation, IForecastDay, IForecast, IHour } from 'src/app/global/interfaces';
 
 
 @Component({
@@ -9,19 +9,23 @@ import { IWeather, ILatLon, IData, IDate } from 'src/app/global/interfaces';
   styleUrls: ['./chart.component.css']
 })
 
-export class ChartComponent implements OnInit{
-
-  // variables
-  weatherData: IWeather | null = null;
+export class ChartComponent implements OnInit {
+  // Not in use variables
   latLons: ILatLon | null = null;
-  date: Date = new Date();
-  intervalDays: number = 3;
-  intervalHours: number = 3;
+  // date: Date = new Date();
+  // intervalHours: number = 3;
+
+  // Variables
+  days: number = 3;
   location: string = "Melbourne"; // [(ngModel)] is used to bind with this variable.
-  results: IDate[] = []
+
+  weatherData: IWeather | null = null;
+  resultLocation: ILocation | null = null;
+  resultForecastDays: IForecastDay[] = [];
+  resultDays: any[] = []
 
   // Constructor
-  constructor(private apiService: ApiService){}
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     // Pass
@@ -30,54 +34,34 @@ export class ChartComponent implements OnInit{
   /**
    * Triggers upon user clicks button
    * 
-   * 1. Retrieves latitude and longitude of the given location
-   * 2. Then, retrieves weather for 'intervalDays' of days for every 'intervalHours'
-   * 3. 
+   * subscribes to an observable contatining air and marine forecast
+   * Once, it returns data, distributes on HTML
    */
   getWeather() {
-    // Retrieve latitude and longitude of the location
-    this.apiService.getLatAndLong(this.location).subscribe( res => {
-      // Set the lat and lon for the location
-      this.latLons = {
-        lat : res[0].lat,
-        lon : res[0].lon
-      }
+    this.apiService.getWeatherData(this.location, 7).subscribe(res => {
+      this.weatherData = res
+      this.resultLocation = this.weatherData.location;
+      this.resultForecastDays = this.weatherData.forecast.forecastday
 
-      // If the location is not wrong
-      if ( this.latLons != null ) {
-        // Determines day intervals
-        const from = this.date.toJSON();
-        this.date.setDate(this.date.getDate() + this.intervalDays) 
-        const to = this.date.toJSON()
-        this.date.setDate(this.date.getDate() - this.intervalDays) 
+      this.resultDays = []  // Reset before retrieving new data
 
-        // Retrieve the weather data for the location if the latitude and longitude is found  
-        this.apiService.getWeatherData(from, this.intervalHours, to, this.latLons.lat, this.latLons.lon).subscribe(res => {
-          this.weatherData = res  // Retrieved weather data
-          this.results = []   // reset the result array
-
-          let tempDate = new Date(this.date.getTime() - (this.date.getTimezoneOffset() * 60000))
-          
-          // Loop through to save correct data into results array
-          this.weatherData.data.at(0)?.coordinates.at(0)?.dates.forEach( x => {
-            let tempResult: IDate = {
-              date: tempDate.toJSON(),
-              value: x.value
-            }
-            this.results.push(tempResult)
-
-            tempDate.setHours(tempDate.getHours() + this.intervalHours)
-          })
-        })
-      }
+      this.resultForecastDays.forEach((forecastDay, day) => {
+        this.resultDays[day] = forecastDay
+      })
     })
-
-    
-
-
-    
-    
   }
 
-
+  /**
+   * Returns latitude and longitude 
+   * @param location a target location
+   */
+  getLatLon(location: string) {
+    this.apiService.getLatAndLong(this.location).subscribe(res => {
+      // Set the lat and lon for the location
+      this.latLons = {
+        lat: res[0].lat,
+        lon: res[0].lon
+      }
+    })
+  }
 }

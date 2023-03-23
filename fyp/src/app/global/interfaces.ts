@@ -2,22 +2,41 @@ import { Injectable } from "@angular/core";
 
 // These interfaces are used weather retrieval
 export interface IWeather {
-    dataGenerated: any,
-    data: IData[]
+    location: ILocation,
+    forecast: IForecast
 }
 
-export interface IData {
-    coordinates: ICoordinate[]
-}
-  
-export interface ICoordinate {
-    dates: IDate[]
+export interface ILocation {
+    name: string,
+    region: string,
+    country: string,
+    lat: number,
+    lon: number,
+    localtime: string
 }
 
-export interface IDate {
-    date: any,
-    value: number
+export interface IForecast {
+    forecastday: IForecastDay[]
 }
+
+export interface IForecastDay {
+    date: string,
+    day: IDay,
+    hour: IHour[]
+}
+
+interface IDay {
+    maxtemp_c: number
+    mintemp_c: number
+}
+
+export interface IHour {
+    time: string,
+    temp_c: number,
+    water_temp_c: number
+
+}
+
 
 export interface ILatLon {
     lat: number,
