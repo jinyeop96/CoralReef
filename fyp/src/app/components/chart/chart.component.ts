@@ -18,11 +18,25 @@ export class ChartComponent implements OnInit {
   // Variables
   days: number = 3;
   location: string = "Melbourne"; // [(ngModel)] is used to bind with this variable.
+  
 
   weatherData: IWeather | null = null;
   resultLocation: ILocation | null = null;
   resultForecastDays: IForecastDay[] = [];
   resultDays: any[] = []
+
+  states = [
+    {id: 0, name: "New South Wales", abbr: "NSW"},
+    {id: 1, name: "Victoria", abbr: "VIC"},
+    {id: 2, name: "Queensland", abbr: "QLD"},
+    {id: 3, name: "Western Australia", abbr: "WA"},
+    {id: 4, name: "South Australia", abbr: "SA"},
+    {id: 5, name: "Tasmania", abbr: "TAS"},
+    {id: 6, name: "Northern Territory", abbr: "NT"}
+  ]
+
+  selectedState: string = "New South Wales";
+
 
   // Constructor
   constructor(private apiService: ApiService) { }
