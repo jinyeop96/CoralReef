@@ -30,13 +30,22 @@ connection.connect( err => {
     }
 
     console.log("connection done");
-    
-    connection.query("INSERT INTO testing (name) values ('james')", function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-      });
 })
 
+app.post('/test', (req, res) => {
+    let newLocation = req.body
+
+    let sql = "INSERT INTO testLocation SET ?"
+    connection.query(sql, newLocation, function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+    });
+    // connection.query("INSERT INTO testLocation (location, state) values (`${location}`, `${state}`)", function (err, result, fields) {
+    //     if (err) throw err;
+    //     console.log(result);
+    // });
+    
+})
 
 // connection.query('insert into testing(name) values ("jinyeop")', (err, rows, fields) => {
 //     if (err) throw err

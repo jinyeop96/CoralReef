@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { IWeather, ILatLon, ILocation, IForecastDay, IForecast, IHour } from 'src/app/global/interfaces';
 
 
@@ -39,7 +40,7 @@ export class ChartComponent implements OnInit {
 
 
   // Constructor
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private dbService: DatabaseService) { }
 
   ngOnInit(): void {
     // Pass
@@ -77,5 +78,15 @@ export class ChartComponent implements OnInit {
         lon: res[0].lon
       }
     })
+  }
+
+  postTest() {
+    let newTest = {
+      location: this.location,
+      state: this.selectedState
+    }
+    this.dbService.testDbApi(newTest).subscribe( res => {
+      console.log("postTest returned");
+    });
   }
 }
