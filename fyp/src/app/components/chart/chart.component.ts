@@ -85,8 +85,19 @@ export class ChartComponent implements OnInit {
       location: this.location,
       state: this.selectedState
     }
-    this.dbService.testDbApi(newTest).subscribe( res => {
-      console.log("postTest returned");
+    this.dbService.postTest(newTest).subscribe( res => {
+      console.log(res);
     });
+  }
+
+  getTest() {
+    this.dbService.getTest().subscribe( res => {
+      let result:any = []
+      result = res
+
+      console.log(result[0])
+      console.log(result[1])
+      
+    })
   }
 }

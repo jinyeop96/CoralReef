@@ -13,7 +13,11 @@ export class DatabaseService {
   constructor(private http: HttpClient) { }
 
   
-  testDbApi(data: any) {
-    return this.http.post('/test', data, httpOptions);
+  postTest(data: any) {
+    return this.http.post('/postTest', data, httpOptions);
+  }
+
+  getTest() {
+    return this.http.get('/getTest');
   }
 }
