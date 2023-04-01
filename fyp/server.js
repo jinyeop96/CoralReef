@@ -3,19 +3,56 @@ const express = require("express");
 const { urlencoded } = require("body-parser");
 // const xouter = require("./routers/");
 const path = require('path')
+// const mysql = require('mysql');
+var debug = require('debug')('web:server');
+var http = require('http');
+const mysqlRouter = require('./web/login');
 const app = express();
 //allow cross-domain
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-  });
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 app.use('/', express.static(path.join(__dirname, 'dist/fyp')))
 
 app.use(express.json());
 app.use(urlencoded({extended:true}));
 app.use("/login",mysqlRouter);
+
+
+// Database connection
+// const connection = mysql.createConnection({
+//   host: '119.29.178.132',
+//   port: 3306,
+//   user: 'root',
+//   password: '202020',
+//   database: 'sign'
+// });
+
+
+// connection.connect( err => {
+//     if (err) {
+//         throw err;
+//     }
+//
+//     console.log("connection done");
+//
+//     connection.query("INSERT INTO testing (name) values ('james')", function (err, result, fields) {
+//         if (err) throw err;
+//         console.log(result);
+//       });
+// })
+
+
+// connection.query('insert into testing(name) values ("jinyeop")', (err, rows, fields) => {
+//     if (err) throw err
+
+//     console.log('The solution is: ', rows[0].solution)
+// })
+
+
 
 // const url = "mongodb://localhost:27017/theatre";
 // mongoose.connect(url, function(err, result){
@@ -110,4 +147,3 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-

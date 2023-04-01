@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { NbThemeModule, NbButtonModule } from '@nebular/theme';
 
 interface User{
   user_name:string,
@@ -34,7 +34,7 @@ export class LoginComponent {
 
     }else{
       console.log("登录失败");
-      
+
     }
   });
   }
@@ -50,14 +50,14 @@ export class LoginComponent {
     obj.user_pwd=this.user.user_pwd
     obj.name=this.user.name
     obj.remark=this.user.remark
-  
+
    this.http.post('http://localhost:8080/login/register',obj).subscribe((response:any) => {
     if(response.message=="success"){
       console.log("注册成功");
 
     }else{
       console.log("注册失败");
-      
+
     }
   });
   return;
