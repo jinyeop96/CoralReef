@@ -25,15 +25,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              {
-                "input": "node_modules/@nebular/theme/styles/theme.scss",
-                "inject": true
-              },
-              {
-                "input": "node_modules/@nebular/theme/styles/prebuilt/default.scss",
-                "inject": true
-              }
+              "./node_modules/@nebular/theme/styles/prebuilt/dark.css",
+              "src/styles.css"
             ],
             "scripts": []
           },
