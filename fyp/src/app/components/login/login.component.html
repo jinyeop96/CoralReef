@@ -1,4 +1,15 @@
 <div>
-    <h1>login work</h1>
-    <button>Submit</button>
+<form action="">
+    用户名：<input name="username" type="text" [(ngModel)]="user.user_name"/>
+    <br/>
+   密码： <input name="password" type="text" [(ngModel)]="user.user_pwd"/>
+   <br/>
+   确认密码： <input name="confirmPassword" type="password" [(ngModel)]="user.confirmPassword"/>
+   <br/>
+    <input name="name" type="text" [(ngModel)]="user.name"/>
+    <input name="remark" type="text" [(ngModel)]="user.remark"/>
+    <button (click)="register()">注册</button>
+  <button nbButton>Click me!</button>
+
+</form>
 </div>
