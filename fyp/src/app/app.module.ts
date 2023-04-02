@@ -15,8 +15,6 @@ import { ChartComponent } from './components/chart/chart.component';
 import { NewsComponent } from './components/news/news.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -34,10 +32,6 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,
-    NbEvaIconsModule,
-    NbThemeModule.forRoot({ name: 'dark' })
   ],
   providers: [DatabaseService, ApiService],
   bootstrap: [AppComponent]
