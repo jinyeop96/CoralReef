@@ -14,10 +14,10 @@ export class DatabaseService {
 
   
   postTest(data: any) {
-    return this.http.post('/postTest', data, httpOptions);
+    return this.http.post('/chart/postTest', data, httpOptions);
   }
 
   getTest() {
-    return this.http.get('/getTest');
+    return this.http.get('/chart/getTest');
   }
 }

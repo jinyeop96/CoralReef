@@ -1,10 +1,18 @@
+// Dependencies
 const express = require("express");
 const { urlencoded } = require("body-parser");
 const path = require('path')
-// const mysql = require('mysql');
 var debug = require('debug')('web:server');
 var http = require('http');
-const mysqlRouter = require('./web/login');
+
+// ############# Router Declaration ############# 
+// Define routes at the bottom
+const loginRouter = require('./routers/loginRouter'); // David
+const chartRouter = require('./routers/chartRouter'); // Jin
+
+
+
+// Configuration
 const app = express();
 //allow cross-domain
 app.use((req, res, next) => {
@@ -16,39 +24,6 @@ app.use((req, res, next) => {
 app.use('/', express.static(path.join(__dirname, 'dist/fyp')))
 app.use(express.json());
 app.use(urlencoded({extended:true}));
-app.use("/login",mysqlRouter);
-
-
-
-
-connection.connect( err => {
-    if (err) {
-        throw err;
-    }
-
-    console.log("connection done");
-})
-
-app.post('/test', (req, res) => {
-    let newLocation = req.body
-
-    let sql = "INSERT INTO testLocation SET ?"
-    connection.query(sql, newLocation, function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-    });
-    // connection.query("INSERT INTO testLocation (location, state) values (`${location}`, `${state}`)", function (err, result, fields) {
-    //     if (err) throw err;
-    //     console.log(result);
-    // });
-    
-})
-
-// connection.query('insert into testing(name) values ("jinyeop")', (err, rows, fields) => {
-//     if (err) throw err
-  
-//     console.log('The solution is: ', rows[0].solution)
-// })
   
 
 function onError(error) {
@@ -166,3 +141,11 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+
+
+// ############# Define Routes here #########
+app.use("/login", loginRouter); // David
+app.use("/chart", chartRouter); // Jin
+
