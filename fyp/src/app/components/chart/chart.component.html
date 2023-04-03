@@ -14,15 +14,15 @@
 
 <div>
     <ul>
-        <li *ngFor="let day of resultDays">
-            {{day.date}}
+        <li *ngFor="let forecastDay of forecastDays">
+            {{forecastDay.date}}
             <ul>
                 <li>
                     Time | Air Temp | Water Temp
                 </li>
             </ul>
             <ul>
-                <li *ngFor="let hour of day.hour">
+                <li *ngFor="let hour of forecastDay.hour">
                 {{hour.time}} | {{hour.temp_c}}°C | {{hour.water_temp_c}}°C
                 </li>
             </ul>
