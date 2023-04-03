@@ -20,11 +20,8 @@ export class ChartComponent implements OnInit {
   days: number = 3;
   location: string = "Melbourne"; // [(ngModel)] is used to bind with this variable.
   
-
-  weatherData: IWeather | null = null;
   resultLocation: ILocation | null = null;
-  resultForecastDays: IForecastDay[] = [];
-  resultDays: any[] = []
+  forecastDays: IForecastDay[] = [];
 
   states = [
     {id: 0, name: "New South Wales", abbr: "NSW"},
@@ -54,15 +51,9 @@ export class ChartComponent implements OnInit {
    */
   getWeather() {
     this.apiService.getWeatherData(this.location, 7).subscribe(res => {
-      this.weatherData = res
-      this.resultLocation = this.weatherData.location;
-      this.resultForecastDays = this.weatherData.forecast.forecastday
-
-      this.resultDays = []  // Reset before retrieving new data
-
-      this.resultForecastDays.forEach((forecastDay, day) => {
-        this.resultDays[day] = forecastDay
-      })
+      let weatherData: IWeather = res
+      this.resultLocation = weatherData.location;
+      this.forecastDays = weatherData.forecast.forecastday
     })
   }
 
