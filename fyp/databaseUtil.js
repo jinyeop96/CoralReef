@@ -113,5 +113,4 @@ const endWithAnd = (sql) => {
   return sql.endsWith("WHERE") ? " " :" and "
 }
 
-module.exports = {getByObj,getAll,getById,update,del,create}
-module.exports = pool   // Modified by Jin. I prefer this way.
+module.exports = {pool, getByObj,getAll,getById,update,del,create}
