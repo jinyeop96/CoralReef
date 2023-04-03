@@ -26,7 +26,7 @@ export class LoginComponent {
 
   login() {
 
-   this.http.post('http://localhost:8080/login/login',this.user).subscribe((response:any) => {
+   this.http.post('/login/login',this.user).subscribe((response:any) => {
     if(response.message=="success"){
       console.log("登录成功");
 
@@ -49,7 +49,7 @@ export class LoginComponent {
     obj.name=this.user.name
     obj.remark=this.user.remark
 
-   this.http.post('http://localhost:8080/login/register',obj).subscribe((response:any) => {
+   this.http.post('/login/register',obj).subscribe((response:any) => {
     if(response.message=="success"){
       console.log("注册成功");
 
