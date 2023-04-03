@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { DatabaseService } from './services/database.service';
 import { ApiService } from './services/api.service';
@@ -34,6 +35,7 @@ import { ClimateChangeComponent } from './components/climate-change/climate-chan
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgApexchartsModule
   ],
   providers: [DatabaseService, ApiService],
   bootstrap: [AppComponent]
