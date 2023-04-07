@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Coral Reef Count and Average by Temperature Range",
+  "title": "Coral Reef Count by Temperature Range",
   "data": {
     "url": "https://raw.githubusercontent.com/jinyeop96/CoralReef/main/Temp.csv"
   },
