@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Coral Reef Count and Average by Temperature Range",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jinyeop96/CoralReef/main/PH.csv"
+  },
+  "transform": [
+    {
+      "calculate": "if(datum.Ph_corr >= 7 && datum.Ph_corr <= 7.5, '7-7.5', if(datum.Ph_corr >= 7.5 && datum.Ph_corr <= 7.8, '7.5-8', if(datum.Ph_corr >= 8 && datum.Ph_corr <= 8.5, '8-8.5', if(datum.Ph_corr >= 8.5 && datum.Ph_corr <= 9, '8.5-9', '9-9.5'))))",
+      "as": "ph_range"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "mean",
+          "field": "individualCount",
+          "as": "avg_count"
+        },
+        {
+          "op": "median",
+          "field": "individualCount",
+          "as": "median_count"
+        }
+      ],
+      "groupby": [
+        "ph_range"
+      ]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "ph_range",
+          "type": "ordinal",
+          "title": "Temperature Range"
+        },
+        "y": {
+          "field": "median_count",
+          "type": "quantitative",
+          "title": "Median Coral Reef Count"
+        },
+        "color": {
+          "value": "blue"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "ph_range",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "avg_count",
+          "type": "quantitative",
+          "title": "Average Coral Reef Count"
+        },
+        "color": {
+          "value": "red"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "top",
+        "dx": -10,
+        "dy": 10
+      },
+      "encoding": {
+        "x": {
+          "value": 700
+        },
+        "y": {
+          "value": 10
+        },
+        "text": {
+          "value": "Red line: Average Coral Reef Count\nBlue Bar: Median Coral Reef Count"
+          
+        },
+        "color": {
+          "value": "black"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "grid": false
+    }
+  },
+  "width":400,
+  "height":300
+}

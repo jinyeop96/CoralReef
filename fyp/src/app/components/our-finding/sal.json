@@ -1,0 +1,28 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/jinyeop96/CoralReef/main/Sal.csv"
+    },
+    "mark": "arc",
+    "encoding": {
+      "theta": {
+        "field": "individualCount",
+        "type": "quantitative",
+        "aggregate": "mean"
+      },
+      "color": {
+        "field": "Sal00",
+        "type": "quantitative",
+        "bin": true,
+        "scale": {
+          "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd"]
+        }
+      },
+      "tooltip": [
+        {"field": "Sal00", "type": "quantitative", "bin": true},
+        {"field": "individualCount", "type": "quantitative", "aggregate": "mean"}
+      ]
+    },
+    "width":640,
+    "height":300
+  }
