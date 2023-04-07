@@ -1,1 +1,79 @@
-<p>our-finding works!</p>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel = "stylesheet" href = "our-finding.component.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+        <script src="finding.js"></script>
+        <title>The impact of COVID-19 on the United States </title>
+    </head>
+
+    <body>
+        <div class = "page">
+        <!-- pure grid group -->
+            <div class="pure-g">
+                <div class="pure-u-1-1">
+                    <h1>The impact of COVID-19 on the United States</h1>
+                    <p>This visualization was created to show the impact COVID-19 is having on states across the United States</p >
+                </div>
+            </div>
+        <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+            <div class="pure-g">
+
+                <div class="pure-u-2-3">
+                    <div id="map1" class="vis-container"></div>
+                </div>
+                <div class="pure-u-1-3">
+                    <div class="description description-right">
+                        <h2>Positive Case status by state (September 2021)</h2>
+                        <p>We can see the distribution of cases in the states of the United States by the color of this graph. For example, there are more than 1 million cases in <span class = 'cases_text'><b>Taxes, California, and Florida</b></span>, while there are less than 200,000 cases in <span class = 'case1_text'><b>Montana</b></span>. </p >
+                    </div>
+                </div>
+            </div>
+
+            <div class="pure-g">
+                <div class="pure-u-2-3">
+                    <div id="map2" class="vis-container"></div>
+                </div>
+                <div class="pure-u-1-3">
+                    <div class="description description-right">
+                        <h2>Vaccination status by state (September 2021)</h2>
+                        <p>The map on the left shows the distribution of vaccination rates by state in the United States. Because of the imbalance of population, percentage is used to calculate. States like <span class = 'Vac1_text'><b>Maine and Vermont</b></span> have vaccination rates as high as almost 70 percent. But in, areas such as<span class = 'Vac_text'><b>Wyoming and La Daho</b></span> do not reach even half that rate.</p >
+                    </div>
+                </div>
+            </div>
+
+            <div class="pure-g">
+                <div class="pure-u-2-3">
+                    <div id="map3" class="vis-container"></div>
+                </div>
+                <div class="pure-u-1-3">
+                    <div class="description description-right">
+                        <h2>Death toll by state</h2>
+                        <p>This bar chart shows the death toll by state in the United States. Notably, <span class = 'NewYork_text'><b>New York</b></span> had a particularly high number of deaths <span class = 'NewYork_text'><b>(27,149)</b></span>, while <span class = 'NewYork1_text'><b>Vermont</b></span> had only <span class = 'NewYork1_text'><b>79</b></span>. There are two main reasons for this, one is the epidemic prevention measures, the other is the population base.</p >
+                    </div>
+                </div>
+            </div>
+
+            <div class="pure-g">
+                <div class="pure-u-2-3">
+                    <div id="map4" class="vis-container"></div>
+                </div>
+                <div class="pure-u-1-3">
+                    <div class="description description-right">
+                        <h2>Death VS Positive Cases</h2>
+                        <p>This Scatter Plot shows a linear increase in the number of deaths and positive cases. We can see that there is a very obvious outlier <b>(NewYork)</b>. I think the main reason is that there are so many people in <b>NewYork</b> who are dying before they get tested for COVID-19.</p >
+                    </div>
+                </div>
+            </div>
+
+            
+            
+    </body>
+
+</html>

@@ -1,0 +1,83 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A scatterplot.",
+    "data": {
+        "url": "https://raw.githubusercontent.com/jinyeop96/CoralReef/main/human.csv"
+    },
+    "mark": {
+        "type": "point",
+        "tooltip": true
+    },
+    "title": "Number of Coral VS Human density",
+    "encoding": {
+        "x": {
+            "field": "human50km",
+            "type": "quantitative",
+            "scale": {
+                "zero": false
+            },
+            "axis": {
+                "title": "HumanDensity50KM"
+            }
+        },
+        "y": {
+            "field": "HARD_CORAL",
+            "type": "quantitative",
+            "axis": {
+                "title": "NumberOfCoral"
+            }
+        },
+        "color": {
+            "field": "human50km",
+            "type": "quantitative",
+            "scale": {
+                "type": "threshold",
+                "domain": [
+                    3330000,
+                    6660000,
+                    9980000,
+                    13300000
+                ],
+                "range": [
+                    "red",
+                    "blue",
+                    "purple",
+                    "green",
+                    "DarkOrange"
+                ]
+            }
+        },
+        "shape": {
+            "field": "human50km",
+            "type": "quantitative",
+            "scale": {
+                "type": "threshold",
+                "domain": [
+                    3330000,
+                    6660000,
+                    9980000,
+                    13300000
+                ],
+                "range": [
+                    "circle",
+                    "square",
+                    "triangle-up",
+                    "diamond",
+                    "triangle-down"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "HARD_CORAL",
+                "title": "NumberOfCoral"
+            },
+            {
+                "field": "human50km",
+                "title": "HumanDensity50KM"
+            }
+        ]
+    },
+    "width":565,
+    "height":300
+}
