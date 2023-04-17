@@ -1,0 +1,31 @@
+<span>Location : </span>
+<input type="text" [(ngModel)]="location" (keyup)="onKeyUp()">
+
+<br>
+<input type="radio" name="forecast" value="0" [(ngModel)]="radioChecked" checked> Weather
+<input type="radio" name="forecast" value="1" [(ngModel)]="radioChecked"> Marine
+
+<br>
+
+<select [(ngModel)]="dropDownSelected">
+    <option [ngValue]="null" disabled>Select Location</option>
+    <option *ngFor="let geoCoding of geoCodings; let i = index" [ngValue]="i">{{geoCoding.name}}, {{geoCoding.admin1}}</option>
+ </select>
+ <button (click)="onClickGetForecast()">Get Weather</button>
+
+
+
+<!-- <iframe 
+    width="1000" height="600"
+    src="https://embed.windy.com/embed2.html?lat=-31.9523&lon=115.8613&detailLat=-33.665&detailLon=149.136&width=650&height=450&zoom=5&level=surface&overlay=sst&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1" 
+    frameborder="0">
+</iframe> -->
+
+<div style="text-align:center" *ngIf="show_temp_chart">
+    <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [title]="chartOptions.title"
+    ></apx-chart>
+</div>
