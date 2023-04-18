@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { DatabaseService } from './services/database.service';
 import { ApiService } from './services/api.service';
@@ -18,6 +19,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClimateChangeComponent } from './components/climate-change/climate-change.component';
 import { OurFindingComponent } from './components/our-finding/our-finding.component';
+import { LiveDataComponent } from './components/live-data/live-data.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { OurFindingComponent } from './components/our-finding/our-finding.compon
     NewsComponent,
     PageNotFoundComponent,
     ClimateChangeComponent,
-    OurFindingComponent
+    OurFindingComponent,
+    LiveDataComponent
   ],
   imports: [
     BrowserModule,
