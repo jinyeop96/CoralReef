@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { IResult, IWeatherForecast } from 'src/app/global/interfaces';
 import { ApiService } from 'src/app/services/api.service';
@@ -27,7 +27,7 @@ export type ChartOptions = {
 export class LiveDataComponent {
   // ------------ Searching location ------------ 
   country_code: string = "AU";
-  location: string = "sydney";
+  location: string = "";
   
   geoCodings: IResult[] = []
   dropDownSelected: number = -1;
@@ -39,9 +39,15 @@ export class LiveDataComponent {
   showChart: Boolean = false;
   showMap: Boolean = false;
   
+  
 
   // Inject dependency
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {
+    // let myScriptElement: HTMLScriptElement;
+    // myScriptElement = document.createElement("script");
+    // myScriptElement.src = "../../../assets/js/windy_map/script.js";
+    // document.body.appendChild(myScriptElement);
+  }
 
   /**
    * Listens for the user input.
@@ -74,11 +80,13 @@ export class LiveDataComponent {
   onClickGetForecast(){
     // Pre 1 : check if radio button is checked
     if (this.radioChecked == -1){
+      alert("Please check either one of Weather and Marine")
       return 
     }
 
     const targetGeocoding = this.geoCodings.at(this.dropDownSelected)
     if (targetGeocoding == undefined){
+      alert("No location is selected")
       return
     }
     
@@ -152,6 +160,11 @@ export class LiveDataComponent {
 
   private getMarineForecast(latitude: number, longitude: number, area: string){
     this.apiService.getMarineForcast(latitude, longitude).subscribe( res => {
+      if (res.hourly == undefined){
+        alert("No data is available for this location")
+        return 
+      }
+      
       let waveHeight: any[] = []
       let swellHeight: any[] = []
 
