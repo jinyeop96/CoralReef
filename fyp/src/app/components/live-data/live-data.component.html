@@ -14,14 +14,14 @@
  <button (click)="onClickGetForecast()">Get Weather</button>
 
 
-
-<!-- <iframe 
+<iframe  *ngIf="showMap"
     width="1000" height="600"
-    src="https://embed.windy.com/embed2.html?lat=-31.9523&lon=115.8613&detailLat=-33.665&detailLon=149.136&width=650&height=450&zoom=5&level=surface&overlay=sst&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1" 
+    src="https://embed.windy.com/embed2.html?lat=-31.9523&lon=115.8613&detailLat=-33.665&detailLon=149.136&width=650&height=450&zoom=5&level=surface&overlay=sst&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
     frameborder="0">
-</iframe> -->
+</iframe>
 
-<div style="text-align:center" *ngIf="show_temp_chart">
+
+<div style="text-align:center" *ngIf="showChart">
     <apx-chart
         [series]="chartOptions.series"
         [chart]="chartOptions.chart"

@@ -27,23 +27,19 @@ export type ChartOptions = {
 export class LiveDataComponent {
   // ------------ Searching location ------------ 
   country_code: string = "AU";
-  location: string = "";
+  location: string = "sydney";
   
   geoCodings: IResult[] = []
   dropDownSelected: number = -1;
   radioChecked: number = -1;
 
-
   // ------------ Chart  ------------ 
   @ViewChild("chart") chart: ChartComponent | any;  // Chart variable
   public chartOptions: Partial<ChartOptions> | any;
-
-  show_temp_chart: Boolean = false;
-  temperature: [] | any = []
-  precipitation_probability: [] | any = []
-  precipitation: any[] = []
-  windspeed: any[] = []
+  showChart: Boolean = false;
+  showMap: Boolean = false;
   
+
   // Inject dependency
   constructor(private apiService: ApiService) {}
 
@@ -80,90 +76,127 @@ export class LiveDataComponent {
     if (this.radioChecked == -1){
       return 
     }
-    
-    // Pre 2 : check if drop down menu is selected
-    const latitude = this.geoCodings.at(this.dropDownSelected)?.latitude
-    const longitude = this.geoCodings.at(this.dropDownSelected)?.longitude
-    
-    if(latitude == undefined || longitude == undefined){
+
+    const targetGeocoding = this.geoCodings.at(this.dropDownSelected)
+    if (targetGeocoding == undefined){
       return
     }
-
+    
+    // Pre 2 : check if drop down menu is selected
+    const latitude = targetGeocoding.latitude
+    const longitude = targetGeocoding.longitude
+    const area = targetGeocoding.name + ", " + targetGeocoding.admin1 + ", " + this.country_code
     
     if(this.radioChecked == 0){
-      this.getWeatherForecast(latitude, longitude) // Get weather forecast
+      this.getWeatherForecast(latitude, longitude, area) // Get weather forecast
     } else {
-      this.getMarineForecast(latitude, longitude)  // Get marine forecast
+      this.getMarineForecast(latitude, longitude, area)  // Get marine forecast
     }
 
   }
-  private getWeatherForecast(latitude: number, longitude: number){
+
+  private getWeatherForecast(latitude: number, longitude: number, area: string){
     
     this.apiService.getWeatherForecast(latitude, longitude).subscribe( res => {
       let weather: IWeatherForecast = res.hourly
       
-      this.temperature = []
-      this.precipitation = []
-      this.precipitation_probability = []
-      this.windspeed = []
+      let temperature: any[] = []
+      let precipitation: any[] = []
+      let precipitation_probability: any[] = []
+      let windspeed: any[] = []
       weather.time.forEach( (t, i) => {
         const time = new Date(t).getTime() -new Date().getTimezoneOffset()*60*1000
         
-        this.temperature.push({
+        temperature.push({
           x: time,
           y: weather.temperature_2m.at(i)
         });
 
-        this.precipitation.push({
+        precipitation.push({
           x: time,
           y: weather.precipitation.at(i)
         });
 
-        this.precipitation_probability.push({
+        precipitation_probability.push({
           x: time,
           y: weather.precipitation_probability.at(i)
         })
 
-        this.windspeed.push({
+        windspeed.push({
           x: time,
           y: weather.windspeed_10m.at(i)
         })
       });
-    
-      this.show_temp_chart = true;
-      this.buildChart()
+
+      // Process to build chart
+      const chartSeries = [{
+        name: "Temperature",
+        data: temperature
+      }, {
+        name: "Precipitation",
+        data: precipitation
+      }, {
+        name: "Precipitation Probability",
+        data: precipitation_probability
+      }, {
+        name: "Wind Speed",
+        data: windspeed
+      }]
+      this.showMap = false
+      const chartTitle = "7 day weather forecast in " + area
+      this.buildChart(chartSeries, chartTitle)
       
       
     });
   }
 
-  private getMarineForecast(latitude: number, longitude: number){
+  private getMarineForecast(latitude: number, longitude: number, area: string){
+    this.apiService.getMarineForcast(latitude, longitude).subscribe( res => {
+      let waveHeight: any[] = []
+      let swellHeight: any[] = []
 
+      res.hourly.time.forEach( (t, i) => {
+        const time = new Date(t).getTime() -new Date().getTimezoneOffset()*60*1000
+
+        waveHeight.push({
+          x: time,
+          y: res.hourly.wave_height.at(i)
+        })
+
+        swellHeight.push({
+          x: time,
+          y: res.hourly.swell_wave_height.at(i)
+        })
+
+      })
+
+      // Process to build chart
+      const chartSeries = [{
+        name: "Wave Height",
+        data: waveHeight
+      }, {
+        name: "Swell Height",
+        data: swellHeight
+      }]
+      this.showMap = true
+      const chartTitle = "7 day marine forecast in " + area
+      this.buildChart(chartSeries, chartTitle)
+    });
   }
 
-  private buildChart() {
+  private buildChart(chartSeries: any[], chartTitle: string) {
+    this.showChart = true;
+    
     // Build graph
     this.chartOptions = {
-      series: [{
-        name: "temperature",
-        data: this.temperature
-      }, {
-        name: "precipitation",
-        data: this.precipitation
-      }, {
-        name: "precipitation_probability",
-        data: this.precipitation_probability
-      }, {
-        name: "wind speed",
-        data: this.windspeed
-      }],
+      series: chartSeries,
       chart: {
         height: 350,
         width: 1000,
         type: "line"
       },
       title: {
-        text: "Ocean Acidification (pH) from 1989 - 2014"
+        text: chartTitle
       },
       xaxis: {
         type: "datetime"

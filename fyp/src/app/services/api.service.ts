@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Constants } from '../global/constants';
-import { IGeocoding, IWeather, IWeatherForecast } from '../global/interfaces';
+import { IGeocoding, IMarine, IWeather, IWeatherForecast } from '../global/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +24,13 @@ export class ApiService {
 
   getWeatherForecast(latitude: number, longitude: number){
     const endpoint = "https://api.open-meteo.com/v1/forecast"
-    const parameters = "?latitude="+latitude+"&longitude="+longitude+"&hourly=temperature_2m,precipitation_probability,precipitation,windspeed_10m"
+    const parameters = "?latitude="+latitude+"&longitude="+longitude+"&hourly=temperature_2m,precipitation_probability,precipitation,windspeed_10m&timezone=auto"
     return this.http.get<IWeather>(endpoint+parameters)
   }
 
   getMarineForcast(latitude: number, longitude: number){
+    const endpoint = "https://marine-api.open-meteo.com/v1/marine?"
+    const parameters = "latitude="+latitude+"&longitude="+longitude+"&hourly=wave_height,swell_wave_height&timezone=auto"
+    return this.http.get<IMarine>(endpoint+parameters)
   }
 }
