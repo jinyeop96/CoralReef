@@ -26,6 +26,6 @@
         {"field": "individualCount", "type": "quantitative", "aggregate": "mean"}
       ]
     },
-    "width":640,
+    "width":500,
     "height":300
   }

@@ -1,79 +1,60 @@
-<!-- <!DOCTYPE html>
-<html lang="en"> -->
-    <head>
-        <meta charset="UTF-8">
-        <link rel = "stylesheet" href = "our-finding.component.css">
-        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-        <script src="finding.js"></script>
-        <title>The impact of COVID-19 on the United States </title>
-    </head>
+<div class = "page">
+<!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <h1>Our Finding</h1>
+            <p>This visualization was created to show the tendency of coral reefs to be influenced by other factors</p >
+        </div>
+    </div>
+<!-- end pure grid group -->
 
-    <!-- <body> -->
-        <div class = "page">
-        <!-- pure grid group -->
-            <div class="pure-g">
-                <div class="pure-u-1-1">
-                    <h1>Our Finding</h1>
-                    <p>This visualization was created to show the tendency of coral reefs to be influenced by other factors</p >
-                </div>
+<!-- pure grid group -->
+    <div class="pure-g">
+
+        <div class="pure-u-2-3">
+            <div id="map1" #map1 class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+            <div class="description description-right">
+                <h2>Number of coral reefs VS Human density</h2>
+                <p>We can see from the figure that the main points are distributed in the population density of <span class = 'Red_text'><b>0-3500000</b></span>, and the points that exceed the population density of 3500000 are very sparse. Although some points are quite numerous, we can believe that coral reefs are more suitable for growth in the population density range of <span class = 'Red_text'><b>0-3500000</b></span> due to the influence of other factors. </p >
             </div>
-        <!-- end pure grid group -->
+        </div>
+    </div>
 
-  <!-- pure grid group -->
-            <div class="pure-g">
-
-                <div class="pure-u-2-3">
-                    <div id="map1" class="vis-container"></div>
-                </div>
-                <div class="pure-u-1-3">
-                    <div class="description description-right">
-                        <h2>Number of coral reefs VS Human density</h2>
-                        <p>We can see from the figure that the main points are distributed in the population density of <span class = 'Red_text'><b>0-3500000</b></span>, and the points that exceed the population density of 3500000 are very sparse. Although some points are quite numerous, we can believe that coral reefs are more suitable for growth in the population density range of <span class = 'Red_text'><b>0-3500000</b></span> due to the influence of other factors. </p >
-                    </div>
-                </div>
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+            <div id="map2" #map2 class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+            <div class="description description-right">
+                <h2>Coral Reef Count by Ph Range</h2>
+                <p>The chart show how coral reefs are affected at different Ph ranges (mean and median). In the ph range between 8 and 9, coral reefs are surviving well, coral reefs are very sensitive to water ph and if the ph value go below 8 or above 9, the number of coral reefs declines dramatically.</p >
             </div>
+        </div>
+    </div>
 
-            <div class="pure-g">
-                <div class="pure-u-2-3">
-                    <div id="map2" class="vis-container"></div>
-                </div>
-                <div class="pure-u-1-3">
-                    <div class="description description-right">
-                        <h2>Coral Reef Count by Ph Range</h2>
-                        <p>The chart show how coral reefs are affected at different Ph ranges (mean and median). In the ph range between 8 and 9, coral reefs are surviving well, coral reefs are very sensitive to water ph and if the ph value go below 8 or above 9, the number of coral reefs declines dramatically.</p >
-                    </div>
-                </div>
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+            <div id="map3" #map3 class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+            <div class="description description-right">
+                <h2>Coral Reef Count by Temperature Range</h2>
+                <p>The chart show how coral reefs are affected at different Temperature ranges (mean and median).  It can be seen that the living environment of coral reefs is relatively stable between 23 and 27 degrees, but the number of coral reefs starts to decline slowly when the temperature is lower than 23 degrees, while the number of coral reefs above 30 degrees drops sharply.</p >
             </div>
+        </div>
+    </div>
 
-            <div class="pure-g">
-                <div class="pure-u-2-3">
-                    <div id="map3" class="vis-container"></div>
-                </div>
-                <div class="pure-u-1-3">
-                    <div class="description description-right">
-                        <h2>Coral Reef Count by Temperature Range</h2>
-                        <p>The chart show how coral reefs are affected at different Temperature ranges (mean and median).  It can be seen that the living environment of coral reefs is relatively stable between 23 and 27 degrees, but the number of coral reefs starts to decline slowly when the temperature is lower than 23 degrees, while the number of coral reefs above 30 degrees drops sharply.</p >
-                    </div>
-                </div>
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+            <div id="map4" #map4 class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+            <div class="description description-right">
+                <h2>Coral Reef Count by Water Sal density</h2>
+                <p>This pie chart shows the effects on coral reefs at different water and salt densities. We can see in the chart that the proportion of coral reefs is still high when the water and salt density is between 38.5-40, which proves that coral reefs are suitable for survival in the 38.5-40 range. As water and salt densities rise above 41, coral reef numbers continue to decline.</p >
             </div>
-
-            <div class="pure-g">
-                <div class="pure-u-2-3">
-                    <div id="map4" class="vis-container"></div>
-                </div>
-                <div class="pure-u-1-3">
-                    <div class="description description-right">
-                        <h2>Coral Reef Count by Water Sal density</h2>
-                        <p>This pie chart shows the effects on coral reefs at different water and salt densities. We can see in the chart that the proportion of coral reefs is still high when the water and salt density is between 38.5-40, which proves that coral reefs are suitable for survival in the 38.5-40 range. As water and salt densities rise above 41, coral reef numbers continue to decline.</p >
-                    </div>
-                </div>
-            </div>
-
-            
-            
-    <!-- </body> -->
-
-<!-- </html> -->
+        </div>
+    </div>
+</div>
