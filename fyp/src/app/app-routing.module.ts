@@ -9,12 +9,14 @@ import { NewsComponent } from './components/news/news.component';
 import { ClimateChangeComponent } from './components/climate-change/climate-change.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { OurFindingComponent } from './components/our-finding/our-finding.component';
+import { MapComponent } from './components/map/map.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent},
   { path: 'about', component: AboutComponent},
   { path: 'login', component: LoginComponent},
   { path: 'live-data', component: LiveDataComponent},
+  { path: 'map', component: MapComponent },
   { path: 'news', component: NewsComponent},
   { path: 'finding', component: OurFindingComponent},
   { path: 'climate-change', component: ClimateChangeComponent},
