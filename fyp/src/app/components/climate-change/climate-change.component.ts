@@ -44,7 +44,7 @@ export class ClimateChangeComponent {
       series: [
         {
           name: "My-series",
-          data: ph
+          data: this.parseData(ph)
         }
       ],
       chart: {
@@ -62,13 +62,12 @@ export class ClimateChangeComponent {
 
   }
 
-
   private buildCo2Chart() {
     this.co2ChartOptions = {
       series: [
         {
           name: "Co2 in ppm",
-          data: co2
+          data: this.parseData(co2)
         }
       ],
       chart: {
@@ -92,7 +91,7 @@ export class ClimateChangeComponent {
       series: [
         {
           name: "in °C",
-          data: oceanTemp
+          data: this.parseData(oceanTemp)
         }
       ],
       chart: {
@@ -109,5 +108,17 @@ export class ClimateChangeComponent {
     }
   }
 
+  private parseData(data: any[]): any{
+    let parsed: any[] = []
+
+    data.forEach( d => {
+      parsed.push({
+        x: new Date(d.x).getTime() -new Date().getTimezoneOffset()*60*1000,
+        y: d.y
+      })
+    })
+
+    return parsed
+  }
 
 }
