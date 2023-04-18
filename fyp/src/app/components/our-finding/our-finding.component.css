@@ -1,3 +1,7 @@
+.content {
+  max-width: initial;
+}
+
 *{
     font-family: 'Source Sans Pro', sans-serif;
   }

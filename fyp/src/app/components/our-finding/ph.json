@@ -79,14 +79,13 @@
       },
       "encoding": {
         "x": {
-          "value": 700
+          "value": 580
         },
         "y": {
           "value": 10
         },
         "text": {
-          "value": "Red line: Average Coral Reef Count\nBlue Bar: Median Coral Reef Count"
-          
+          "value": ["Red line: Average Coral Reef Count", "Blue Bar: Median Coral Reef Count"]
         },
         "color": {
           "value": "black"
@@ -102,6 +101,6 @@
       "grid": false
     }
   },
-  "width":400,
+  "width":450,
   "height":300
 }
