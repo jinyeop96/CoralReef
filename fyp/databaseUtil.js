@@ -56,12 +56,18 @@ const create = (tableName, data) => {
   });
 }
 
+// get corals by obj
+const getAllCorals = (tableName) => {
+  const sql = 'SELECT * FROM  ?? ';
+  return query(sql, [tableName]);
+}
+
 // get data by obj
 const getByObj = (tableName, data) => {
   let sql = 'SELECT * FROM  ??  WHERE';
   sql = sql.replace("??", "`" + tableName + "`");
-  sql=parseObj(sql,data)
-  return query(sql,null);
+  sql = parseObj(sql, data)
+  return query(sql, null);
 }
 // get one data by id
 const getById = (tableName, id) => {
@@ -110,7 +116,7 @@ const parseObj = (sql, obj) => {
   return sql;
 }
 const endWithAnd = (sql) => {
-  return sql.endsWith("WHERE") ? " " :" and "
+  return sql.endsWith("WHERE") ? " " : " and "
 }
 
-module.exports = {pool, getByObj,getAll,getById,update,del,create}
+module.exports = { pool, getByObj, getAll, getById, update, del, create, getAllCorals }

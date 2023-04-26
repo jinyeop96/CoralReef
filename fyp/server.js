@@ -9,6 +9,7 @@ var http = require('http');
 // Define routes at the bottom
 const loginRouter = require('./routers/loginRouter'); // David
 const chartRouter = require('./routers/chartRouter'); // Jin
+const coralsRouter = require('./routers/coralsRouter'); // Jin
 
 
 
@@ -23,8 +24,8 @@ app.use((req, res, next) => {
 });
 app.use('/', express.static(path.join(__dirname, 'dist/fyp')))
 app.use(express.json());
-app.use(urlencoded({extended:true}));
-  
+app.use(urlencoded({ extended: true }));
+
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -148,4 +149,4 @@ function onListening() {
 // ############# Define Routes here #########
 app.use("/login", loginRouter); // David
 app.use("/chart", chartRouter); // Jin
-
+app.use("/corals", coralsRouter);
