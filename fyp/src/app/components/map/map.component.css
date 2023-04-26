@@ -1,0 +1,32 @@
+.coral-right {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgb(18, 211, 217);
+    width: 600px;
+    padding: 20px
+}
+
+/* .coral-right h2{
+    text-align: center;
+} */
+.random {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+}
+
+.tip {
+    width: 160px;
+    height: 60px;
+    margin: 10px;
+    padding: 10px;
+    border: "1px solid #ccc";
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: rgb(0 0 0 / 20%) 0px 5px 5px -3px, rgb(0 0 0 / 14%) 0px 8px 10px 1px, rgb(0 0 0 / 12%) 0px 3px 14px 2px
+}

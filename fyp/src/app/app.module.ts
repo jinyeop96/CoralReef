@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClimateChangeComponent } from './components/climate-change/climate-change.component';
 import { OurFindingComponent } from './components/our-finding/our-finding.component';
 import { LiveDataComponent } from './components/live-data/live-data.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LiveDataComponent } from './components/live-data/live-data.component';
     PageNotFoundComponent,
     ClimateChangeComponent,
     OurFindingComponent,
-    LiveDataComponent
+    LiveDataComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
