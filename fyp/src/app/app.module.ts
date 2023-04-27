@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { LightgalleryModule } from 'lightgallery/angular';
 
 import { DatabaseService } from './services/database.service';
 import { ApiService } from './services/api.service';
@@ -42,7 +42,8 @@ import { MapComponent } from './components/map/map.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    LightgalleryModule
   ],
   providers: [DatabaseService, ApiService],
   bootstrap: [AppComponent]

@@ -1,3 +1,24 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+#windy {
+    width: 100%;
+    height: 500px;
+}
+
+/* #windy #bottom, */
+/* #windy #mobile-ovr-select, */
+/* #windy #embed-zoom, */
+#windy #logo-wrapper {
+    display: none !important;
+}
+
+/* #windy #logo-wrapper {
+    top: initial;
+    bottom: 65px;
+}
+
+#windy #logo-wrapper #logo {
+    left: 80px;
+} */
