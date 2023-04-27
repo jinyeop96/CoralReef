@@ -11,6 +11,7 @@ import {
   ApexXAxis,
   ApexTitleSubtitle
 } from "ng-apexcharts";
+import { GlobalService } from 'src/app/services/global.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -32,6 +33,7 @@ export class LiveDataComponent {
   geoCodings: IResult[] = []
   dropDownSelected: number = -1;
   radioChecked: number = -1;
+  forecastDays: number = 7;
 
   // ------------ Chart  ------------ 
   @ViewChild("chart") chart: ChartComponent | any;  // Chart variable
@@ -42,7 +44,7 @@ export class LiveDataComponent {
   
 
   // Inject dependency
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private globalService: GlobalService) {
     // let myScriptElement: HTMLScriptElement;
     // myScriptElement = document.createElement("script");
     // myScriptElement.src = "../../../assets/js/windy_map/script.js";
@@ -54,7 +56,7 @@ export class LiveDataComponent {
    * Whenever an input is changed, it gets the geocodings for locations
    */
   onKeyUp(){
-    this.apiService.getGeocoding(this.location).subscribe( geoCoding => {
+    this.apiService.getGeoLocation(this.location).subscribe( geoCoding => {
       // Reset
       this.geoCodings=[]  
       this.dropDownSelected = 0
@@ -105,50 +107,23 @@ export class LiveDataComponent {
 
   private getWeatherForecast(latitude: number, longitude: number, area: string){
     
-    this.apiService.getWeatherForecast(latitude, longitude).subscribe( res => {
-      let weather: IWeatherForecast = res.hourly
-      
-      let temperature: any[] = []
-      let precipitation: any[] = []
-      let precipitation_probability: any[] = []
-      let windspeed: any[] = []
-      weather.time.forEach( (t, i) => {
-        const time = new Date(t).getTime() -new Date().getTimezoneOffset()*60*1000
-        
-        temperature.push({
-          x: time,
-          y: weather.temperature_2m.at(i)
-        });
-
-        precipitation.push({
-          x: time,
-          y: weather.precipitation.at(i)
-        });
-
-        precipitation_probability.push({
-          x: time,
-          y: weather.precipitation_probability.at(i)
-        })
-
-        windspeed.push({
-          x: time,
-          y: weather.windspeed_10m.at(i)
-        })
-      });
+    this.apiService.getWeatherForecast(latitude, longitude, this.forecastDays).subscribe( res => {
+      const weather: IWeatherForecast = res.hourly
+      const refinedWeather = this.globalService.refineWeatherForecast(weather);
 
       // Process to build chart
       const chartSeries = [{
         name: "Temperature",
-        data: temperature
+        data: refinedWeather.temperature
       }, {
         name: "Precipitation",
-        data: precipitation
+        data: refinedWeather.precipitation
       }, {
         name: "Precipitation Probability",
-        data: precipitation_probability
+        data: refinedWeather.precipitation_probability
       }, {
         name: "Wind Speed",
-        data: windspeed
+        data: refinedWeather.windspeed
       }]
       this.showMap = false
       const chartTitle = "7 day weather forecast in " + area
