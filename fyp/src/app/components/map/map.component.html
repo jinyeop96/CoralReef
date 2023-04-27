@@ -1,3 +1,11 @@
-<div>
-    <div id="map" style="width: 1000px;height:80vh;margin: 0px auto"></div>
+<div style="display: flex;justify-content: center;">
+    <div id="map" style="width: 600px;height:80vh;"></div>
+    <div class="coral-right">
+        <h2 *ngIf="list.length==0">Please select a continent</h2>
+        <div class="tip" *ngFor="let item of list.slice(0,15)">
+            <h5 class="card-title">{{item.scientific_name}}</h5>
+            <div class="card-text">{{item.family}}</div>
+        </div>
+        <span *ngIf="list.length>15" class="random">Randomly display 15 bars</span>
+    </div>
 </div>

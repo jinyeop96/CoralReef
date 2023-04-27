@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
 import * as echarts from 'echarts';
 import { data } from './data3';
+import { MapService } from 'src/app/services/map.service';
+import corals from '../../../assets/json/corals_return.json'
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
 export class MapComponent {
+  constructor(private map: MapService) { }
+  list:any = [];
   ngOnInit(): void {
-    console.log(123);
-    console.log(echarts);
+    console.log(corals)
+    // this.map.getCorals()
+    //   .subscribe(res=>{
+    //     console.log(res)
+    //   })
     var chartDom:any = document.getElementById('map');
     var myChart = echarts.init(chartDom);
     var option;
@@ -39,11 +47,11 @@ export class MapComponent {
         sublink: 'http://www.census.gov/popest/data/datasets.html',
         left: 'right'
       },
-      tooltip: {
-        trigger: 'item',
-        showDelay: 0,
-        transitionDuration: 0.2
-      },
+      // tooltip: {
+      //   trigger: 'item',
+      //   showDelay: 0,
+      //   transitionDuration: 0.2
+      // },
       visualMap: {
         min: 800,
         max: 50000,
@@ -90,5 +98,8 @@ export class MapComponent {
       ]
     };
     myChart.setOption(option);
+    myChart.on('click',(item)=>{
+      this.list = corals.result.list.find(i => i.region_name==item.name)?.data;
+    })
   }
 }
