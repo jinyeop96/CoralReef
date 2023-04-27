@@ -1,21 +1,12 @@
-<main>
-    <div class="hero">
-        <img src="../../../assets/images/home.jpeg" alt="照片">
-        <div class="hero-text">
-            <h1>Coral Reefs</h1>
-
-            <a href="其他页面.html" class="button">Learn more</a>
-        </div>
-    </div>
-</main>
 
 
-<img class="home" src="../../../assets/images/home.jpeg"/>
+<div style="text-align:center">
+    <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [title]="chartOptions.title"
+    ></apx-chart>
+</div>
 
-<button (click)="onClickLogin()">Navigate to login</button>
-
-
-
-<img class="home" src="../../../assets/images/home.jpeg"/>
-
-<button (click)="onClickLogin()">Navigate to login</button>
+<!-- <img class="home" src="../../../assets/images/home.jpeg"/> -->

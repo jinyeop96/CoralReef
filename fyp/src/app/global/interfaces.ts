@@ -33,3 +33,9 @@ export interface IMarineForecast{
     wave_height: number[],
     swell_wave_height: number[],
 }
+
+export interface ILatLon {
+    latitude: string,
+    longitude: string,
+    city: string
+}
