@@ -40,21 +40,27 @@ export class MapComponent {
         width: 2
       }
     });
+    const count = corals.result.list.map(item=>(
+      {
+        name: item.region_name,
+        value: item.data.length
+      }
+    ))
     option = {
       title: {
-        text: 'AUS xxxx',
-        subtext: 'Data from xxx',
-        sublink: 'http://www.census.gov/popest/data/datasets.html',
+        text: 'The distribution of coral reefs in different states of Australia',
+        subtext: 'Data from: https://www.ala.org.au',
+        sublink: 'https://www.ala.org.au',
         left: 'right'
       },
-      // tooltip: {
-      //   trigger: 'item',
-      //   showDelay: 0,
-      //   transitionDuration: 0.2
-      // },
+      tooltip: {
+        trigger: 'item',
+        showDelay: 0,
+        transitionDuration: 0.2
+      },
       visualMap: {
-        min: 800,
-        max: 50000,
+        min: 0,
+        max: 800,
         text: ['High', 'Low'],
         calculable: true,
         inRange: {
@@ -63,20 +69,20 @@ export class MapComponent {
 
         left: 'right',
       },
-      toolbox: {
-        show: true,
-        //orient: 'vertical',
-        left: 'left',
-        top: 'top',
-        feature: {
-          dataView: { readOnly: false },
-          restore: {},
-          saveAsImage: {}
-        }
-      },
+      // toolbox: {
+      //   show: true,
+      //   //orient: 'vertical',
+      //   left: 'left',
+      //   top: 'top',
+      //   feature: {
+      //     dataView: { readOnly: false },
+      //     restore: {},
+      //     saveAsImage: {}
+      //   }
+      // },
       series: [
         {
-          name: 'xxxx',
+          name: 'Category',
           type: 'map',
           roam: true,
           map: 'AUS',
@@ -85,15 +91,7 @@ export class MapComponent {
               show: true
             }
           },
-          data: [
-            { name: 'New South Wales', value: 48023 },
-            { name: 'Victoria', value: 7349 },
-            { name: 'Queensland', value: 5255 },
-            { name: 'South Australia', value: 29491 },
-            { name: 'Western Australia', value: 38430 },
-            { name: 'Tasmania', value: 1875 },
-            { name: 'Northern Territory', value: 9034 },
-          ]
+          data: count
         }
       ]
     };

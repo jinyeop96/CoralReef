@@ -1,7 +1,10 @@
 <div style="display: flex;justify-content: center;">
     <div id="map" style="width: 600px;height:80vh;"></div>
     <div class="coral-right">
-        <h2 *ngIf="list.length==0">Please select a continent</h2>
+        <div *ngIf="list.length==0">
+            <h1 style="text-align: center;">Click on different states on the map to view the distribution of coral reefs</h1>
+            <h2>The distribution information of coral reefs will be displayed here</h2>
+        </div>
         <div class="tip" *ngFor="let item of list.slice(0,15)">
             <h5 class="card-title">{{item.scientific_name}}</h5>
             <div class="card-text">{{item.family}}</div>
