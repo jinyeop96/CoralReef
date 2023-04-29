@@ -21,6 +21,8 @@ import { ClimateChangeComponent } from './components/climate-change/climate-chan
 import { OurFindingComponent } from './components/our-finding/our-finding.component';
 import { LiveDataComponent } from './components/live-data/live-data.component';
 import { MapComponent } from './components/map/map.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { MapComponent } from './components/map/map.component';
     ClimateChangeComponent,
     OurFindingComponent,
     LiveDataComponent,
-    MapComponent
+    MapComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
