@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { IWeatherForecast } from 'src/app/global/interfaces';
+import { GlobalService } from 'src/app/services/global.service';
 
 // ApexCharts
 import {
@@ -9,8 +11,7 @@ import {
   ApexXAxis,
   ApexTitleSubtitle
 } from "ng-apexcharts";
-import { IWeatherForecast } from 'src/app/global/interfaces';
-import { GlobalService } from 'src/app/services/global.service';
+
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;

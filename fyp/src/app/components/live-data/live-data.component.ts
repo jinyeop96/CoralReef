@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { IResult, IWeatherForecast } from 'src/app/global/interfaces';
 import { ApiService } from 'src/app/services/api.service';
+
+declare function setWindyMap(lat: number, lon:number): void;
 
 // ApexCharts
 import {
@@ -25,7 +27,7 @@ export type ChartOptions = {
   templateUrl: './live-data.component.html',
   styleUrls: ['./live-data.component.css']
 })
-export class LiveDataComponent {
+export class LiveDataComponent implements AfterViewInit{
   // ------------ Searching location ------------ 
   country_code: string = "AU";
   location: string = "";
@@ -35,11 +37,15 @@ export class LiveDataComponent {
   radioChecked: number = -1;
   forecastDays: number = 7;
 
+  path = "https://embed.windy.com/embed2.html?lat=-31.9523&lon=115.8613&detailLat=-33.665&detailLon=149.136&width=650&height=450&zoom=5&level=surface&overlay=sst&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
+  @ViewChild('iframe') iframe: ElementRef | any
+
   // ------------ Chart  ------------ 
   @ViewChild("chart") chart: ChartComponent | any;  // Chart variable
   public chartOptions: Partial<ChartOptions> | any;
   showChart: Boolean = false;
-  showMap: Boolean = false;
+  showMarineMap: Boolean = false;
+  showTempMap: Boolean = false;
   
   
 
@@ -49,7 +55,28 @@ export class LiveDataComponent {
     // myScriptElement = document.createElement("script");
     // myScriptElement.src = "../../../assets/js/windy_map/script.js";
     // document.body.appendChild(myScriptElement);
+    // var ifrm = document.createElement("iframe");
+    // ifrm.setAttribute("src", this.path);
+    // ifrm.style.width = "100%";
+    // ifrm.style.height = "480px";
+    // document.body.appendChild(ifrm)
+    
+
+    
+    // apiService.getGeoLocationByIP().subscribe(res => {
+    //   const lat = Number(res.latitude);
+    //   const lon = Number(res.longitude);
+    //   setWindyMap(lat, lon);
+    // })
+    
   }
+
+
+  ngAfterViewInit(): void {
+    console.log(document.getElementById('myFrame'))
+  }
+
+  
 
   /**
    * Listens for the user input.
@@ -125,8 +152,13 @@ export class LiveDataComponent {
         name: "Wind Speed",
         data: refinedWeather.windspeed
       }]
-      this.showMap = false
+      this.showMarineMap = false
+      this.showTempMap = true
       const chartTitle = "7 day weather forecast in " + area
+
+      // Display Windy Map
+      setWindyMap(latitude, longitude);
+      
       this.buildChart(chartSeries, chartTitle)
       
       
@@ -166,9 +198,25 @@ export class LiveDataComponent {
         name: "Swell Height",
         data: swellHeight
       }]
-      this.showMap = true
+      this.showMarineMap = true
+      this.showTempMap = false
       const chartTitle = "7 day marine forecast in " + area
+
+
       this.buildChart(chartSeries, chartTitle)
+
+      // Marine map
+      this.path = "https://embed.windy.com/embed2.html?lat="+latitude+"&lon="+longitude+"&detailLat=-33.665&detailLon=149.136&width=650&height=450&zoom=5&level=surface&overlay=sst&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
+    
+      console.log(document.getElementById('myFrame'))
+      // marineMap.setAttribute('src', this.path)
+      
+      
+      
+
+      
+
+      
     });
   }
 

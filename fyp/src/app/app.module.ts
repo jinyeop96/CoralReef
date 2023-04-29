@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { LightgalleryModule } from 'lightgallery/angular';
 
 import { DatabaseService } from './services/database.service';
 import { ApiService } from './services/api.service';
@@ -21,6 +21,8 @@ import { ClimateChangeComponent } from './components/climate-change/climate-chan
 import { OurFindingComponent } from './components/our-finding/our-finding.component';
 import { LiveDataComponent } from './components/live-data/live-data.component';
 import { MapComponent } from './components/map/map.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { MapComponent } from './components/map/map.component';
     ClimateChangeComponent,
     OurFindingComponent,
     LiveDataComponent,
-    MapComponent
+    MapComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,8 @@ import { MapComponent } from './components/map/map.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    LightgalleryModule
   ],
   providers: [DatabaseService, ApiService],
   bootstrap: [AppComponent]
