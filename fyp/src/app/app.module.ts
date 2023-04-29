@@ -23,6 +23,8 @@ import { LiveDataComponent } from './components/live-data/live-data.component';
 import { MapComponent } from './components/map/map.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { GlobalService } from './services/global.service';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,7 @@ import { FooterComponent } from './components/footer/footer.component';
     NgApexchartsModule,
     LightgalleryModule
   ],
-  providers: [DatabaseService, ApiService],
+  providers: [DatabaseService, ApiService, GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

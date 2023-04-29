@@ -26,6 +26,21 @@ app.use('/', express.static(path.join(__dirname, 'dist/fyp')))
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 
+// app.use('/js', express.static(__dirname + '/js'));
+// app.use('/dist', express.static(__dirname + '/../dist'));
+// app.use('/css', express.static(__dirname + '/css'));
+// app.use('/partials', express.static(__dirname + '/partials'));
+
+
+// Angular configures # in URL. This requires no configuration on server side.
+// In order to have no # in the URL, set urlHash: false in app-routing.module.ts
+// Then, as below, accept all request and simply render the index.html
+app.all('/*', function(req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode
+    const filePath = path.join(__dirname, 'dist/fyp')
+    res.sendFile('index.html', { root: filePath });
+});
+
 
 function onError(error) {
   if (error.syscall !== 'listen') {
