@@ -12,7 +12,7 @@ import { OurFindingComponent } from './components/our-finding/our-finding.compon
 import { MapComponent } from './components/map/map.component';
 
 const routes: Routes = [
-  { path: '', component: IndexComponent},
+  { path: 'home', component: IndexComponent},
   { path: 'about', component: AboutComponent},
   { path: 'login', component: LoginComponent},
   { path: 'live-data', component: LiveDataComponent},

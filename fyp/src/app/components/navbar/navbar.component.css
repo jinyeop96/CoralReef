@@ -1,3 +1,7 @@
 .navbar-custom{
-    background-color: coral;
+    background-color: #ffffff;
+}
+
+.navbar-nav-custom{
+    margin-right: 5%;
 }
