@@ -22,3 +22,30 @@
         Optimal air temperature is between 24°C and 27°C.
     </p>
 </div>
+
+<!-- Jumbotron 3 -->
+<div class="jumbotron">
+    <div>
+        <input type="text" [(ngModel)]="location" (keyup)="onKeyUp()" placeholder="Location">
+    
+        <select [(ngModel)]="dropDownSelected">
+            <option [ngValue]="null" disabled>Select Location</option>
+            <option *ngFor="let geoCoding of geoCodings; let i = index" [ngValue]="i">{{geoCoding.name}},
+                {{geoCoding.admin1}}</option>
+        </select>
+    
+        <br>
+        <button (click)="onClickGetForecast()">Get Weather</button>
+        
+        <div id="windy" *ngIf="showTempMap"></div>
+    
+        <div style="text-align:center" *ngIf="showChart">
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                [title]="chartOptions.title"></apx-chart>
+        </div>
+    
+        <br><br><br>
+    
+        
+    </div>
+</div>
