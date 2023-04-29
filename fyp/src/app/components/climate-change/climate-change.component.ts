@@ -50,7 +50,7 @@ export class ClimateChangeComponent {
       chart: {
         height: 350,
         width: 1000,
-        type: "line"
+        type: "area"
       },
       title: {
         text: "Ocean Acidification (pH) from 1989 - 2014"
@@ -72,7 +72,7 @@ export class ClimateChangeComponent {
       ],
       chart: {
         height: 500,
-        type: "area",
+        type: "line",
         width: 1000
       },
       title: {

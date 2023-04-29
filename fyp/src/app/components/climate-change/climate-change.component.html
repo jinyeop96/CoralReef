@@ -1,47 +1,113 @@
-<!-- Ocean Acidification changes -->
-<div style="text-align:center">
-    <apx-chart
-        [series]="phChartOptions.series"
-        [chart]="phChartOptions.chart"
-        [xaxis]="phChartOptions.xaxis"
-        [title]="phChartOptions.title"
-    ></apx-chart>
+<!-- Jumbotron 1 -->
+<div class="jumbotron">
+    <h1>What affects to Coral Reefs</h1>
+    <p>
+        Increased <b>ocean temperatures</b> and <b>changing ocean chemistry</b> are the greatest global threats to coral reef
+        ecosystems. 
+        <br>
+        These threats are caused by warmer atmospheric temperatures and increasing levels of carbon dioxide
+        in seawater.
+    </p>
 </div>
 
-<span class="historical_explanation">
-    Ocean acidification refers to a change in ocean chemistry in response to the uptake of carbon dioxide from the atmosphere. The amount of carbon dioxide in the atmosphere is in equilibrium with that in seawater, so when atmospheric concentrations increase so do oceanic concentrations. Carbon dioxide entering seawater reacts to form carbonic acid, causing an increase in acidity.
-</span>
-<br><br><br>
+<!-- Jumbotron 2 -->
+<div class="jumbotron" style="padding: 2rem 2rem;">
+    <!-- <h1>Bootstrap Tutorial</h1> -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="oc-tab" data-bs-toggle="tab" data-bs-target="#oc-tab-pane"
+                type="button" role="tab" aria-controls="oc-tab-pane" aria-selected="true">Ocean Acidification</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="co2-tab" data-bs-toggle="tab" data-bs-target="#co2-tab-pane"
+                type="button" role="tab" aria-controls="co2-tab-pane" aria-selected="false">Carbon Dioxide (Co2)</button>
+        </li>
+        
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="ot-tab" data-bs-toggle="tab" data-bs-target="#ot-tab-pane"
+                type="button" role="tab" aria-controls="ot-tab-pane" aria-selected="false">Ocean Temperature</button>
+        </li>
 
-<!-- Carbon Dioxide changes -->
-<div style="text-align:center">
-    <apx-chart
-        [series]="co2ChartOptions.series"
-        [chart]="co2ChartOptions.chart"
-        [xaxis]="co2ChartOptions.xaxis"
-        [title]="co2ChartOptions.title"
-    ></apx-chart>
-</div> 
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="ref-tab" data-bs-toggle="tab" data-bs-target="#ref-tab-pane"
+                type="button" role="tab" aria-controls="ref-tab-pane" aria-selected="false">Reference</button>
+        </li>
+    </ul>
 
-<span class="historical_explanation">
-    Each year, the ocean absorbs about one-quarter of the carbon dioxide emitted from the burning of fossil fuels (oil, coal, and natural gas). Since the Industrial Revolution, ocean acidity has increased by about 30%, a rate that is more than 10 times what has previously occurred for millions of years. Further, ocean acidity levels are expected to increase by an additional 40% above present levels by the end of this century.
-</span>
+    <div class="tab-content" id="myTabContent">
+        <!-- Tab for Ocean Acidification -->
+        <div class="tab-pane fade show active container" id="oc-tab-pane" role="tabpanel" aria-labelledby="oc-tab"
+            tabindex="0">
 
-<br><br><br>
+            <p class="chart-explanation">
+                Ocean acidification refers to a change in ocean chemistry in response to the uptake of carbon dioxide
+                from the
+                atmosphere. The amount of carbon dioxide in the atmosphere is in equilibrium with that in seawater, so
+                when
+                atmospheric concentrations increase so do oceanic concentrations. Carbon dioxide entering seawater
+                reacts to form
+                carbonic acid, causing an increase in acidity.
+            </p>
 
-<br>
-<!-- Ocean Temperautre changes-->
-<div style="text-align:center">
-    <apx-chart
-        [series]="oceanTempChartOptions.series"
-        [chart]="oceanTempChartOptions.chart"
-        [xaxis]="oceanTempChartOptions.xaxis"
-        [title]="oceanTempChartOptions.title"
-    ></apx-chart>
+            <div class="container">
+                <apx-chart [series]="phChartOptions.series" [chart]="phChartOptions.chart"
+                    [xaxis]="phChartOptions.xaxis" [title]="phChartOptions.title"></apx-chart>
+            </div>
+
+
+        </div>
+
+        <!-- Tab for Carbon Dioxide -->
+        <div class="tab-pane fade container" id="co2-tab-pane" role="tabpanel" aria-labelledby="co2-tab"
+            tabindex="0">
+            <p class="chart-explanation">
+                Each year, the ocean absorbs about one-quarter of the carbon dioxide emitted from the burning of fossil
+                fuels (oil,
+                coal, and natural gas). Since the Industrial Revolution, ocean acidity has increased by about 30%, a
+                rate that is
+                more than 10 times what has previously occurred for millions of years. Further, ocean acidity levels are
+                expected to
+                increase by an additional 40% above present levels by the end of this century.
+            </p>
+
+            <div class="container">
+                <apx-chart [series]="co2ChartOptions.series" [chart]="co2ChartOptions.chart"
+                    [xaxis]="co2ChartOptions.xaxis" [title]="co2ChartOptions.title"></apx-chart>
+            </div>
+        </div>
+
+        <!-- Tab for Ocean Tempterature -->
+        <div class="tab-pane fade container" id="ot-tab-pane" role="tabpanel" aria-labelledby="ot-tab"
+            tabindex="0">
+            <p class="chart-explanation">
+                As atmospheric temperatures rise, so do seawater temperatures. This warming causes corals to lose the
+                microscopic
+                algae that produce food that corals need, placing stress on the corals. Without this algae coral also
+                lose their
+                coloration—a condition known as coral bleaching— because the loss of algae reveals the white color of
+                the calcium
+                carbonate structure underlying the polyps. Severe or prolonged bleaching can kill coral colonies or
+                leave them more
+                vulnerable to other threats such as infectious disease.
+            </p>
+
+            <div class="container">
+                <apx-chart [series]="oceanTempChartOptions.series" [chart]="oceanTempChartOptions.chart"
+                    [xaxis]="oceanTempChartOptions.xaxis" [title]="oceanTempChartOptions.title"></apx-chart>
+            </div>
+
+
+        </div>
+
+
+        <!-- Tab for Reference -->
+        <div class="tab-pane fade container" id="ref-tab-pane" role="tabpanel" aria-labelledby="ref-tab" 
+        tabindex="0">
+            <p class="chart-explanation">
+                Text retrieved from : <a href="https://www.epa.gov/coral-reefs/threats-coral-reefs">United States Environmental Protection Agency</a>
+            </p>
+            
+        </div>
+        
+    </div>
 </div>
-
-<span class="historical_explanation">
-    As atmospheric temperatures rise, so do seawater temperatures. This warming causes corals to lose the microscopic algae that produce food that corals need, placing stress on the corals. Without this algae coral also lose their coloration—a condition known as coral bleaching— because the loss of algae reveals the white color of the calcium carbonate structure underlying the polyps. Severe or prolonged bleaching can kill coral colonies or leave them more vulnerable to other threats such as infectious disease.
-</span>
-
-<br><br><br><br><br>
