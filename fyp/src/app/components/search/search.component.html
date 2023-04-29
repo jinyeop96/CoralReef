@@ -1,0 +1,21 @@
+<form>
+  <mat-form-field appearance="outline" class="search-input">
+    <mat-label>Genus</mat-label>
+    <input matInput placeholder="Search Genus" name="search text" [(ngModel)]="searchText">
+  </mat-form-field>
+
+  <button id="search_button" mat-raised-button color="primary" (click)="onSearch()">Search</button>
+</form>
+
+<mat-card *ngFor="let organism of organisms">
+  <mat-card-header>
+    <mat-card-title class="genus">{{organism.genus}}</mat-card-title>
+    <mat-card-subtitle>{{organism.phylum}}</mat-card-subtitle>
+    <mat-card-subtitle>{{organism.class}}</mat-card-subtitle>
+    <mat-card-subtitle>{{organism.order}}</mat-card-subtitle>
+    <mat-card-subtitle>{{organism.family}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+
+  </mat-card-actions>
+</mat-card>

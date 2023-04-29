@@ -28,6 +28,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { JumbotronComponent } from './components/jumbotron/jumbotron.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { MarineComponent } from './components/marine/marine.component';
+import { SearchComponent } from './components/search/search.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -46,7 +51,8 @@ import { MarineComponent } from './components/marine/marine.component';
     FooterComponent,
     JumbotronComponent,
     WeatherComponent,
-    MarineComponent
+    MarineComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,11 @@ import { MarineComponent } from './components/marine/marine.component';
     HttpClientModule,
     BrowserAnimationsModule,
     NgApexchartsModule,
-    LightgalleryModule
+    LightgalleryModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [DatabaseService, ApiService, GlobalService],
   bootstrap: [AppComponent]

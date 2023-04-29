@@ -12,7 +12,7 @@ import { OurFindingComponent } from './components/our-finding/our-finding.compon
 import { MapComponent } from './components/map/map.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { MarineComponent } from './components/marine/marine.component';
-
+import { SearchComponent } from "./components/search/search.component";
 const routes: Routes = [
   { path: 'home', component: IndexComponent},
   { path: 'about', component: AboutComponent},
@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'map', component: MapComponent },
   { path: 'news', component: NewsComponent},
   { path: 'finding', component: OurFindingComponent},
+  { path: 'search', component: SearchComponent},
   { path: 'climate-change', component: ClimateChangeComponent},
   { path: '**', component: PageNotFoundComponent}, // Wild card. This has to be at the end within routes.
 ];

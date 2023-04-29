@@ -10,7 +10,7 @@ var http = require('http');
 const loginRouter = require('./routers/loginRouter'); // David
 const chartRouter = require('./routers/chartRouter'); // Jin
 const coralsRouter = require('./routers/coralsRouter'); // Jin
-
+const organismRouter = require('./routers/organismRouter'); // Oliver
 
 
 // Configuration
@@ -165,3 +165,4 @@ function onListening() {
 app.use("/login", loginRouter); // David
 app.use("/chart", chartRouter); // Jin
 app.use("/corals", coralsRouter);
+app.use("/organism", organismRouter);// Oliver
