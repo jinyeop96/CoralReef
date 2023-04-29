@@ -1,26 +1,19 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Coral Reef</a>
+        <a class="navbar-brand" routerLink="home" [queryParams]="{'title': 'Home'}">Coral Reef</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav navbar-nav-custom ms-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+                    <a class="nav-link" routerLink="about" [queryParams]="{'title': 'About Us'}">About Us</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="about">About</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="news">News</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="map">Map</a>
+                    <a class="nav-link" routerLink="news"[queryParams]="{'title': 'Coral Reef News'}">News</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -40,9 +33,9 @@
                         Library
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" routerLink="finding">Finding</a></li>
-                        <li><a class="dropdown-item" routerLink="finding">Map</a></li>
-                        <li><a class="dropdown-item" routerLink="climate-change">Historical data</a></li>
+                        <li><a class="dropdown-item" routerLink="finding" [queryParams]="{'title': 'Analysis'}">Analysis</a></li>
+                        <li><a class="dropdown-item" routerLink="map" [queryParams]="{'title': 'Map'}">Map</a></li>
+                        <li><a class="dropdown-item" routerLink="climate-change" [queryParams]="{'title': 'Historical Data'}">Historical data</a></li>
                     </ul>
                 </li>
             </ul>

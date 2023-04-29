@@ -1,4 +1,6 @@
-.footer{
-    background-color: coral;
+.footer-custom{
+    background-color: #282828;
     margin-top: 5%;
+    /* border-top-color: #bcbcbc;
+    border-top-style: solid; */
 }

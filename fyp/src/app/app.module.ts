@@ -25,6 +25,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GlobalService } from './services/global.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { JumbotronComponent } from './components/jumbotron/jumbotron.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     LiveDataComponent,
     MapComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    JumbotronComponent
   ],
   imports: [
     BrowserModule,
