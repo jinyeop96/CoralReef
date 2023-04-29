@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@twogate/ngx-photo-gallery": "^1.5.0",
+    "lightgallery": "^2.7.1"
+  }
+}
