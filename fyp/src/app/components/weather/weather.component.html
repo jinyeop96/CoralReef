@@ -7,10 +7,17 @@
     </p>
     <br>
     <p class="lead container">
-        <a class="btn btn-secondary" role="button" routerLink="../climate-change" [queryParams]="{'title': 'Historical Data'}">
+        <a class="btn btn-secondary" role="button" routerLink="../climate-change"
+            [queryParams]="{'title': 'Historical Data'}">
             Learn More About How Ocean Temperature Affects Coral Reef Ecosystem
         </a>
-      </p>
+    </p>
+
+    <br>
+    <a class="container"
+        href="https://oceanservice.noaa.gov/facts/coralwaters.html#:~:text=Reef%2Dbuilding%20corals%20cannot%20tolerate,%C2%B0%20Celsius)%20for%20short%20periods.">
+        National Ocean Service
+    </a>
 </div>
 
 <!-- Jumbotron 2 -->
@@ -26,26 +33,33 @@
 <!-- Jumbotron 3 -->
 <div class="jumbotron">
     <div>
-        <input type="text" [(ngModel)]="location" (keyup)="onKeyUp()" placeholder="Location">
-    
-        <select [(ngModel)]="dropDownSelected">
-            <option [ngValue]="null" disabled>Select Location</option>
-            <option *ngFor="let geoCoding of geoCodings; let i = index" [ngValue]="i">{{geoCoding.name}},
-                {{geoCoding.admin1}}</option>
-        </select>
-    
-        <br>
-        <button (click)="onClickGetForecast()">Get Weather</button>
-        
+        <h1>Search for a Location!</h1>
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Location"
+                (keyup)="onKeyUp()" [(ngModel)]="location">
+
+            <div class="input-group">
+                <select class="custom-select" id="inputGroupSelect04">
+                    <option selected disabled>Choose...</option>
+                    <option *ngFor="let geoCoding of geoCodings; let i = index" [ngValue]="i">
+                        {{geoCoding.name}}, {{geoCoding.admin1}}
+                    </option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" (click)="onClickGetForecast()">Get
+                        Weather</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Map -->
         <div id="windy" *ngIf="showTempMap"></div>
-    
+
+        <!-- Forecast chart -->
         <div style="text-align:center" *ngIf="showChart">
             <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
                 [title]="chartOptions.title"></apx-chart>
         </div>
-    
-        <br><br><br>
-    
-        
     </div>
 </div>

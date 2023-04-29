@@ -87,7 +87,7 @@ export class WeatherComponent {
     const area = targetGeocoding.name + ", " + targetGeocoding.admin1 + ", " + this.country_code
 
     // Get weather forecast
-    this.getWeatherForecast(latitude, longitude, area) 
+    this.getWeatherForecast(latitude, longitude, area)
   }
 
   private getWeatherForecast(latitude: number, longitude: number, area: string) {
@@ -110,7 +110,7 @@ export class WeatherComponent {
         name: "Wind Speed",
         data: refinedWeather.windspeed
       }]
- 
+
       this.showTempMap = true
       const chartTitle = "7 day weather forecast in " + area
 
