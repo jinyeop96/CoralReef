@@ -10,12 +10,16 @@ import { ClimateChangeComponent } from './components/climate-change/climate-chan
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { OurFindingComponent } from './components/our-finding/our-finding.component';
 import { MapComponent } from './components/map/map.component';
+import { WeatherComponent } from './components/weather/weather.component';
+import { MarineComponent } from './components/marine/marine.component';
 
 const routes: Routes = [
   { path: 'home', component: IndexComponent},
   { path: 'about', component: AboutComponent},
   { path: 'login', component: LoginComponent},
   { path: 'live-data', component: LiveDataComponent},
+  { path: 'weather', component: WeatherComponent},
+  { path: 'marine', component: MarineComponent},
   { path: 'map', component: MapComponent },
   { path: 'news', component: NewsComponent},
   { path: 'finding', component: OurFindingComponent},

@@ -22,11 +22,12 @@
                         Live
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Weather</a></li>
-                        <li><a class="dropdown-item" href="#">Marine</a></li>
+                        <li><a class="dropdown-item" routerLink="weather" [queryParams]="{'title': 'Weather Forecast'}">Weather</a></li>
+                        <li><a class="dropdown-item" routerLink="marine" [queryParams]="{'title': 'Marine Forecast'}">Marine</a></li>
                     </ul>
                 </li>
-
+                
+                <!-- Drop down -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
