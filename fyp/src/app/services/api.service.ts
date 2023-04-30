@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Constants } from '../global/constants';
-import { IGeocoding, ILatLon, IMarine, IWeather, IWeatherForecast } from '../global/interfaces';
+import { IGeocoding, ILatLon, IMarine, INewsArray, IWeather, IWeatherForecast } from '../global/interfaces';
+import { GlobalService } from './global.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private globalService: GlobalService) { }
   
   /**
    * API call to get geographical infomation of an input
@@ -37,5 +38,28 @@ export class ApiService {
   getGeoLocationByIP(){
     const url = "https://api.ipgeolocation.io/ipgeo?apiKey=970bcd945a1d45c3957eed74659788c6"
     return this.http.get<ILatLon>(url)
+  }
+
+  getCoralNews() {
+    // const url = "https://newsdata.io/api/1/news?apikey=pub_21416fcf22849dd68fbe2b9acc01dc71094a2&q=ocean&country=au&language=en "
+    
+    // Set from date to 3 days ago
+    const d = new Date()
+    d.setDate(d.getDate() - 3)
+
+    const year:string = d.getFullYear().toString();
+    
+    let month: number | string = d.getMonth() + 1;
+    if( month < 10){
+      month = '0' + month.toString
+    }
+
+    const date = d.getDate()
+
+    const fromDate = year + "-" + month + "-" + date
+
+    const endPoint = "https://newsapi.org/v2/everything"
+    const parameters = "?q=+reef&from="+fromDate+"&sortBy=popularity&apiKey=d12e476f9663461886c8af678d6e1d7e"
+    return this.http.get<INewsArray>(endPoint + parameters)
   }
 }

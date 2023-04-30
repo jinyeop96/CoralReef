@@ -39,3 +39,30 @@ export interface ILatLon {
     longitude: string,
     city: string
 }
+
+// export interface INewsArray{
+//     results: INews[]
+// }
+
+// export interface INews {
+//     title: string,
+//     link: string,
+//     description: string,
+//     pubDate: string,
+//     image_url: string
+//     category: string[]
+// }
+
+export interface INewsArray{
+    articles: INews[]
+}
+
+export interface INews {
+    author: string,
+    title: string,
+    url: string,
+    description: string,
+    publishedAt: string,
+    urlToImage: string
+    category: string[]
+}
