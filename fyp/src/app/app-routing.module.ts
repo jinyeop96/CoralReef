@@ -14,7 +14,7 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { MarineComponent } from './components/marine/marine.component';
 import { SearchComponent } from "./components/search/search.component";
 const routes: Routes = [
-  { path: 'home', component: IndexComponent},
+  { path: '', component: IndexComponent},
   { path: 'about', component: AboutComponent},
   { path: 'login', component: LoginComponent},
   { path: 'live-data', component: LiveDataComponent},

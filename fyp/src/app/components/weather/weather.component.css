@@ -1,0 +1,36 @@
+.w-chart{
+    width: 100%;
+}
+
+.visualisation{
+    margin-top: 3%;
+}
+
+.white-background {
+    background-color: white;
+}
+
+.emoji-custom{
+    width: 50%;
+    height: 50%;
+}
+
+.emoji-sad{
+    color: red;
+}
+.emoji-normal {
+    color: pink;
+}
+.emoji-happy{
+    color: #06e396;
+}
+
+.card-custom {
+    border:transparent;
+    text-align: center;
+    box-shadow: none;
+}
+
+.card-body-custom {
+    margin-top: 20%;
+}
