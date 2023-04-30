@@ -31,76 +31,67 @@ export class ClimateChangeComponent {
   public phChartOptions: Partial<ChartOptions> | any;
   public co2ChartOptions: Partial<ChartOptions> | any;
   public oceanTempChartOptions: Partial<ChartOptions> | any;
+  public chartOptions: Partial<ChartOptions> | any;
+
+  // Variables
+  title: string = ""
+  showChart: boolean = true;
 
   public constructor() {
-    this.buildPhChart();
-    this.buildCo2Chart();
-    this.buildOceanTempChart();
+    this.buildChart('pH', ph, 'area');
   }
 
-  private buildPhChart() {
+  /**
+   * Upon user's click action on the tab, it calls chart building funciton with appropriate params.
+   * 
+   * @param num an int for which chart to build
+   */
+  onTabButtonClick(num: number) {
+    // Reference
+    if( num == 3){
+      this.showChart = false
+      return
+    }
+
+    this.showChart = true;
+
+    // pH chart
+    if (num == 0) {
+      this.title = "Ocean Acidification (pH) from 1989 - 2014"
+      this.buildChart('pH', ph, 'area')
+    // Co2 chart
+    } else if (num == 1) {
+      this.title = "Carbon Dioxide (Co2) measurement from 1959 - 2022";
+      this.buildChart('ppm', co2, 'line')
+    // Ocean Temp chart
+    } else {
+      this.title = "The average ocean temperature from past to present";
+      this.buildChart('°C', oceanTemp, 'area')
+    }
+  }
+
+  /**
+   * Gatehr up the chart options and build.
+   * 
+   * @param unit a unit of measurement
+   * @param data a list of pre-processed data
+   * @param type a type of chart. line or area in this case.
+   */
+  private buildChart(unit: string, data: any[], type: string) {
     // Build graph
-    this.phChartOptions = {
+    this.chartOptions = {
       series: [
         {
-          name: "My-series",
-          data: this.parseData(ph)
+          name: unit,
+          data: this.parseData(data)
         }
       ],
       chart: {
-        height: 350,
-        width: 1000,
-        type: "area"
+        height: 400,
+        type: type
       },
       title: {
-        text: "Ocean Acidification (pH) from 1989 - 2014"
-      },
-      xaxis: {
-        type: "datetime"
-      }
-    };
-
-  }
-
-  private buildCo2Chart() {
-    this.co2ChartOptions = {
-      series: [
-        {
-          name: "Co2 in ppm",
-          data: this.parseData(co2)
-        }
-      ],
-      chart: {
-        height: 500,
-        type: "line",
-        width: 1000
-      },
-      title: {
-        text: "Carbon Dioxide (Co2) measurement from 1959 - 2022"
-      },
-      xaxis: {
-        type: "datetime"
-      }
-    };
-
-
-  }
-
-  private buildOceanTempChart() {
-    this.oceanTempChartOptions = {
-      series: [
-        {
-          name: "in °C",
-          data: this.parseData(oceanTemp)
-        }
-      ],
-      chart: {
-        height: 500,
-        type: "area",
-        width: 1000
-      },
-      title: {
-        text: "The average ocean temperature from past to present"
+        text: this.title
       },
       xaxis: {
         type: "datetime"
@@ -108,12 +99,20 @@ export class ClimateChangeComponent {
     }
   }
 
-  private parseData(data: any[]): any{
+  /**
+   * Process data to have proper time. 
+   * x represent time
+   * y represent data at the time.
+   * 
+   * @param data a list of data to process
+   * @returns a list of data processed
+   */
+  private parseData(data: any[]): any {
     let parsed: any[] = []
 
-    data.forEach( d => {
+    data.forEach(d => {
       parsed.push({
-        x: new Date(d.x).getTime() -new Date().getTimezoneOffset()*60*1000,
+        x: new Date(d.x).getTime() - new Date().getTimezoneOffset() * 60 * 1000,
         y: d.y
       })
     })
