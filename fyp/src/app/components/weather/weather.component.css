@@ -34,3 +34,9 @@
 .card-body-custom {
     margin-top: 20%;
 }
+
+.btn-custom {
+    background-color: #f25a68;
+    border-radius: 0%;
+    border-color: transparent;
+}
