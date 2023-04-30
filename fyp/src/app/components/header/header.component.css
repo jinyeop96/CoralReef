@@ -1,0 +1,6 @@
+.header-custom {
+    margin-top: -3%;
+    background-image: url('../../../assets/images/coral2.jpg');
+    background-size: cover;
+    /* height: 40vh; */
+}

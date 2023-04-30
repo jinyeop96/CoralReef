@@ -1,10 +1,83 @@
+<!-- Header -->
+<!-- Include header in the main page only -->
+<app-header></app-header>
 
 
-<div style="text-align:center">
-    <apx-chart
-        [series]="chartOptions.series"
-        [chart]="chartOptions.chart"
-        [xaxis]="chartOptions.xaxis"
-        [title]="chartOptions.title"
-    ></apx-chart>
+<!-- Overview section -->
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Main feature we provide</h2>
+                    <p class="lead fw-normal text-muted mb-5">Check out all the information of coral ecosystem in our
+                        site<br></p>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5">
+            <!-- Card 1 -->
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    <img class="card-img-top" src="../../../assets/images/news.jpeg" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="news">
+                            <br>Latest news for corals in Australia
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    <img class="card-img-top" src="../../../assets/images/weather.jpeg" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Weather</div>
+                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="weather">
+                            <br>Cheak current coral condition
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    <img class="card-img-top" src="../../../assets/images/coral4.jpeg" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Research</div>
+                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="finding">
+                            <br>Analysis of Australian coral reefs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial section-->
+<div class="jumbotron jumbotron-custom">
+    <div class="row gx-5 justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+            <div class="text-center">
+                <h2 class="fw-bolder">Do you want to go to see corals?</h2>
+                <p class="lead fw-normal text-muted mb-5">Check {{chartTitle}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                            d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+                    </svg>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container w-chart">
+        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+            [title]="chartOptions.title"></apx-chart>
+    </div>
 </div>

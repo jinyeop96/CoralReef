@@ -1,6 +1,9 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="" [queryParams]="{'title': 'Home'}">Coral Reef</a>
+        <!-- <a class="navbar-brand" routerLink="" [queryParams]="{'title': 'Home'}">Coral Reef</a> -->
+        <a routerLink="" [queryParams]="{'title': 'Home'}">
+            <img class="logo-custom" src="../../../assets/images/logo.png">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,16 +16,13 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Live
-                    </a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Live</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="weather" [queryParams]="{'title': 'Weather Forecast'}">Weather</a></li>
                         <li><a class="dropdown-item" routerLink="news" [queryParams]="{'title': 'Coral News'}">News</a></li>
                     </ul>
                 </li>
-                
+
                 <!-- Drop down -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
