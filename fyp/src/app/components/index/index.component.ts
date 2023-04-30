@@ -32,6 +32,8 @@ export class IndexComponent implements OnInit {
    @ViewChild("chart") chart: ChartComponent | any;  // Chart variable
    public chartOptions: Partial<ChartOptions> | any;
 
+   chartTitle = "";
+
   constructor(private apiService: ApiService, private globalService: GlobalService) {}
 
   /**
@@ -65,26 +67,25 @@ export class IndexComponent implements OnInit {
             name: "Wind Speed",
             data: refinedWeather.getWindspeed()
           }]
-          const chartTitle = "Today's weather in " + location;
+          this.chartTitle = "today's weather in " + location;
 
-          this.buildChart(chartSeries, chartTitle)
+          this.buildChart(chartSeries)
 
           })
     })
     
   }
   
-  private buildChart(chartSeries: any[], chartTitle: string) {
+  private buildChart(chartSeries: any[]) {
   this.chartOptions = {
       series: chartSeries,
       chart: {
         height: 350,
-        width: 1000,
         type: "line"
       },
-      title: {
-        text: chartTitle
-      },
+      // title: {
+      //   text: chartTitle
+      // },
       xaxis: {
         type: "datetime"
       }
