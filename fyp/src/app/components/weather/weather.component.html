@@ -1,65 +1,153 @@
 <!-- Jumbotron 1 -->
-<div class="jumbotron">
-    <h1>How Does Weather Relate to Ocean Temperature?</h1>
-    <p class="container">
-        An increase in the air temperature will cause water temperatures to increase as well. As water temperatures
-        increase, water pollution problems will increase, and many aquatic habitats will be negatively affected.
-    </p>
-    <br>
-    <p class="lead container">
-        <a class="btn btn-secondary" role="button" routerLink="../climate-change"
-            [queryParams]="{'title': 'Historical Data'}">
-            Learn More About How Ocean Temperature Affects Coral Reef Ecosystem
-        </a>
-    </p>
+<div class="jumbotron white-background">
+    <div class="container">
+        <h1>How Does Weather Relate to Ocean Temperature?</h1>
+        <p>
+            An increase in the air temperature will cause water temperatures to increase as well. As water temperatures
+            increase, water pollution problems will increase, and many aquatic habitats will be negatively affected.
+        </p>
+        <br>
+        <p>
+            <a class="btn btn-secondary" role="button" routerLink="../climate-change"
+                [queryParams]="{'title': 'Historical Data'}">
+                Learn More About How Ocean Temperature Affects Coral Reef Ecosystem
+            </a>
+        </p>
 
-    <br>
-    <a class="container"
-        href="https://oceanservice.noaa.gov/facts/coralwaters.html#:~:text=Reef%2Dbuilding%20corals%20cannot%20tolerate,%C2%B0%20Celsius)%20for%20short%20periods.">
-        National Ocean Service
-    </a>
+        <br>
+        <a
+            href="https://oceanservice.noaa.gov/facts/coralwaters.html#:~:text=Reef%2Dbuilding%20corals%20cannot%20tolerate,%C2%B0%20Celsius)%20for%20short%20periods.">
+            National Ocean Service
+        </a>
+    </div>
 </div>
 
 <!-- Jumbotron 2 -->
 <div class="jumbotron">
-    <h1>What is an Optimal Air Temperature?</h1>
-    <p class="container">
-        According to our analysis, air temperature over 30°C will degrade corals significantly.
-        <br>
-        Optimal air temperature is between 24°C and 27°C.
-    </p>
+    <div class="container">
+        <h1>What is an Optimal Air Temperature for Corals?</h1>
+        <p>
+            According to our analysis, air temperature over 30°C will degrade corals significantly.
+            <br>
+            Optimal air temperature is between 24°C and 27°C.
+        </p>
+    </div>
 </div>
 
-<!-- Jumbotron 3 -->
-<div class="jumbotron">
-    <div>
-        <h1>Search for a Location!</h1>
-        <div class="input-group">
-            <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Location"
-                (keyup)="onKeyUp()" [(ngModel)]="location">
 
+<!-- Jumbotron 3 -->
+<div class="jumbotron white-background">
+    <div class="container">
+
+        <div>
+            <h1>Check Coral Condition Here!</h1>
             <div class="input-group">
-                <select class="custom-select" id="inputGroupSelect04">
-                    <option selected disabled>Choose...</option>
-                    <option *ngFor="let geoCoding of geoCodings; let i = index" [ngValue]="i">
-                        {{geoCoding.name}}, {{geoCoding.admin1}}
-                    </option>
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" (click)="onClickGetForecast()">Get
-                        Weather</button>
+                <input type="text" class="form-control" aria-label="Text input with dropdown button"
+                    placeholder="Location" (keyup)="onKeyUp()" [(ngModel)]="location">
+
+                <div class="input-group">
+                    <select class="custom-select" id="inputGroupSelect04" [(ngModel)]="dropDownSelected">
+                        <option selected disabled>Choose...</option>
+                        <option *ngFor="let geoCoding of geoCodings; let i = index" [ngValue]="i">
+                            {{geoCoding.name}}, {{geoCoding.admin1}}
+                        </option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" (click)="onClickGetForecast()">Get
+                            Weather</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <!-- Map -->
-        <div id="windy" *ngIf="showTempMap"></div>
 
-        <!-- Forecast chart -->
-        <div style="text-align:center" *ngIf="showChart">
-            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
-                [title]="chartOptions.title"></apx-chart>
+            <div *ngIf="showVisualisation">
+                <!-- Emoji -->
+                <div class="visualisation">
+                    <h1>Coral condition in the following week</h1>
+
+                    <!-- Card Deck -->
+                    <div class="row row-cols-3 g-3">
+
+                        <!-- Card 1 -->
+                        <div class="col">
+                            <div class="card card-custom">
+                                <div class="card-body card-body-custom">
+                                    <h3 class="card-title"> Average temperature<br>{{tempAvg}}°C</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="col">
+                            <div class="card card-custom">
+                                <div class="card-body">
+                                    <div *ngIf="tempAvg < 24">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-emoji-neutral emoji-normal emoji-custom"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path
+                                                d="M4 10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5zm3-4C7 5.672 6.552 5 6 5s-1 .672-1 1.5S5.448 8 6 8s1-.672 1-1.5zm4 0c0-.828-.448-1.5-1-1.5s-1 .672-1 1.5S9.448 8 10 8s1-.672 1-1.5z" />
+                                        </svg>
+                                    </div>
+
+                                    <div *ngIf="24 <= tempAvg && tempAvg <= 27">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-emoji-smile emoji-happy emoji-custom"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path
+                                                d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+                                        </svg>
+                                    </div>
+
+                                    <div *ngIf="27 < tempAvg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-emoji-frown emoji-sad emoji-custom"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path
+                                                d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="col">
+                            <div class="card card-custom">
+                                <div class="card-body card-body-custom">
+                                    <h1 class="card-title" *ngIf="tempAvg < 24">So so</h1>
+                                    <h1 class="card-title" *ngIf="24 <= tempAvg && tempAvg <= 27">Best!</h1>
+                                    <h1 class="card-title" *ngIf="27 < tempAvg">Bad</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+                <!-- Forecast chart -->
+                <div class="w-chart visualisation">
+                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                        [title]="chartOptions.title">
+                    </apx-chart>
+                </div>
+
+                <!-- Map -->
+                <div class="visualisation">
+                    You can change to the other factor from top-right corner.
+                    <div id="windy"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

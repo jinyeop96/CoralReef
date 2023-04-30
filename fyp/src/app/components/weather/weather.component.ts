@@ -37,12 +37,12 @@ export class WeatherComponent {
   geoCodings: IResult[] = []
   dropDownSelected: number = -1;
   forecastDays: number = 7;
+  tempAvg: number = -1;
 
   // Chart
   @ViewChild("chart") chart: ChartComponent | any;  // Chart variable
   public chartOptions: Partial<ChartOptions> | any;
-  showChart: Boolean = false;
-  showTempMap: Boolean = false;
+  showVisualisation: boolean = false;
 
   // ------------ Constructor ------------ 
   constructor(private apiService: ApiService, private globalService: GlobalService) { }
@@ -72,6 +72,7 @@ export class WeatherComponent {
         }
       })
 
+
     });
   }
 
@@ -96,6 +97,12 @@ export class WeatherComponent {
       const weather: IWeatherForecast = res.hourly
       const refinedWeather = this.globalService.refineWeatherForecast(weather);
 
+      // Temperature Average
+      this.tempAvg = refinedWeather.temperature.reduce((accum, temp) => accum + temp.y, 0) /
+        refinedWeather.temperature.length;
+      this.tempAvg = Number(this.tempAvg.toFixed(2)) // up to 2 decimal places.
+
+
       // Process to build chart
       const chartSeries = [{
         name: "Temperature",
@@ -111,12 +118,15 @@ export class WeatherComponent {
         data: refinedWeather.windspeed
       }]
 
-      this.showTempMap = true
       const chartTitle = "7 day weather forecast in " + area
+
+      // Build Visualisation
+      this.showVisualisation = true;
 
       // Display Windy Map
       setWindyMap(latitude, longitude);
 
+      // Display Chart
       this.buildChart(chartSeries, chartTitle)
 
 
@@ -124,14 +134,11 @@ export class WeatherComponent {
   }
 
   private buildChart(chartSeries: any[], chartTitle: string) {
-    this.showChart = true;
-
     // Build graph
     this.chartOptions = {
       series: chartSeries,
       chart: {
-        height: 350,
-        width: 1000,
+        height: 400,
         type: "line"
       },
       title: {
@@ -141,7 +148,6 @@ export class WeatherComponent {
         type: "datetime"
       }
     };
-
   }
 
 }
