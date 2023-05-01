@@ -1,3 +1,11 @@
 .search-input {
   margin-right: 10px;
 }
+
+.content {
+  display: flex;
+}
+
+img {
+  width: 500px;
+}
