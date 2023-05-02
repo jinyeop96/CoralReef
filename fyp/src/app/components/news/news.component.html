@@ -10,6 +10,18 @@
             </div>
         </div>
 
+        <!-- <div class="btn-group btn-group-custom btn-group-toggle" data-toggle="buttons" *ngIf="showSortingButton">
+            <label class="btn btn-secondary active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+            </label>
+        </div> -->
+
         <!-- It takes to retieve news via API call. So, show loading bar before distributing contents. -->
         <div class="text-center" *ngIf="showLoadingBar">
             <div class="spinner-border" role="status">
@@ -39,7 +51,7 @@
                         <div class="d-flex align-items-end justify-content-between">
                             <div class="d-flex align-items-center">
                                 <div class="small">
-                                    <div class="text-muted">Published {{article.publishedAt}} ago</div>
+                                    <div class="text-muted">Published on {{article.publishedAt}}</div>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +64,7 @@
         <ul class="pagination justify-content-center">
             <li class="page-item">
                 <button type="button" class="page-link" tabindex="-1" (click)="onClickMore()"
-                    *ngIf="!allArticlesLoaded">Load More</button>
+                    *ngIf="showMoreButton">Load More</button>
             </li>
         </ul>
     </nav>
