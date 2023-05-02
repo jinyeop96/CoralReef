@@ -30,59 +30,61 @@ export type ChartOptions = {
 })
 export class IndexComponent implements OnInit {
 
-   // ------------- Variables -------------
-   @ViewChild("chart") chart: ChartComponent | any;  // Chart variable
-   public chartOptions: Partial<ChartOptions> | any;
+  // ------------- Variables -------------
+  @ViewChild("chart") chart: ChartComponent | any;  // Chart variable
+  public chartOptions: Partial<ChartOptions> | any;
 
-   chartTitle = "";
+  chartTitle = "";
+  showLoadingBar: boolean = true;
 
-  constructor(private apiService: ApiService, private globalService: GlobalService) {}
+  constructor(private apiService: ApiService, private globalService: GlobalService) { }
 
   /**
    * Upon initialising the main page, get the geolocation through IP address.
    * Then it retrives weather forecast for the location.
    */
   ngOnInit(): void {
-    this.apiService.getGeoLocationByIP().subscribe( res => {
+    this.apiService.getGeoLocationByIP().subscribe(res => {
       const lat = Number(res.latitude);
       const long = Number(res.longitude);
       const location = res.city;
       const forecastDays = 1;
 
-      
-
       // Get the weather forecast.
-      this.apiService.getWeatherForecast(lat, long, forecastDays).subscribe( res => {
-          const weather: IWeatherForecast = res.hourly
-          const refinedWeather = this.globalService.refineWeatherForecast(weather);
+      this.apiService.getWeatherForecast(lat, long, forecastDays).subscribe(res => {
+        const weather: IWeatherForecast = res.hourly
+        const refinedWeather = this.globalService.refineWeatherForecast(weather);
 
 
-          // Process to build chart
-          const chartSeries = [{
-            name: "Temperature",
-            data: refinedWeather.getTemperature()
-          }, {
-            name: "Precipitation",
-            data: refinedWeather.getPrecipitation()
-          }, {
-            name: "Precipitation Probability",
-            data: refinedWeather.getPrecipitationProbability()
-          }, {
-            name: "Wind Speed",
-            data: refinedWeather.getWindspeed()
-          }]
-          this.chartTitle = "today's weather in " + location;
+        // Process to build chart
+        const chartSeries = [{
+          name: "Temperature",
+          data: refinedWeather.getTemperature()
+        }, {
+          name: "Precipitation",
+          data: refinedWeather.getPrecipitation()
+        }, {
+          name: "Precipitation Probability",
+          data: refinedWeather.getPrecipitationProbability()
+        }, {
+          name: "Wind Speed",
+          data: refinedWeather.getWindspeed()
+        }]
+        this.chartTitle = "today's weather in " + location;
 
           this.buildChart(chartSeries)
           // Display Windy Map
           setWindyMap(lat, long);
           })
     })
-    
+
   }
-  
+
   private buildChart(chartSeries: any[]) {
-  this.chartOptions = {
+    // Disable the loading bar
+    this.showLoadingBar = false;
+
+    this.chartOptions = {
       series: chartSeries,
       chart: {
         height: 350,
@@ -99,5 +101,5 @@ export class IndexComponent implements OnInit {
 
 
 
- 
+
 }

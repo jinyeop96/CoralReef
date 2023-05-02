@@ -9,6 +9,26 @@
                 </div>
             </div>
         </div>
+
+        <!-- <div class="btn-group btn-group-custom btn-group-toggle" data-toggle="buttons" *ngIf="showSortingButton">
+            <label class="btn btn-secondary active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+            </label>
+        </div> -->
+
+        <!-- It takes to retieve news via API call. So, show loading bar before distributing contents. -->
+        <div class="text-center" *ngIf="showLoadingBar">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
         <div class="row gx-5">
             <!-- Card 1 -->
             <div class="col-lg-4 mb-5" *ngFor="let article of articles">
@@ -31,7 +51,7 @@
                         <div class="d-flex align-items-end justify-content-between">
                             <div class="d-flex align-items-center">
                                 <div class="small">
-                                    <div class="text-muted">Published {{article.publishedAt}} ago</div>
+                                    <div class="text-muted">Published on {{article.publishedAt}}</div>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +63,8 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item">
-                <button type="button" class="page-link" tabindex="-1" (click)="onClickMore()" *ngIf="!allArticlesLoaded">Load More</button>
+                <button type="button" class="page-link" tabindex="-1" (click)="onClickMore()"
+                    *ngIf="showMoreButton">Load More</button>
             </li>
         </ul>
     </nav>

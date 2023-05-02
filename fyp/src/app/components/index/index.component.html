@@ -58,7 +58,7 @@
     </div>
 </section>
 
-<!-- Testimonial section-->
+<!-- Weather section-->
 <div class="jumbotron jumbotron-custom">
     <div class="row gx-5 justify-content-center">
         <div class="col-lg-8 col-xl-6">
@@ -76,7 +76,13 @@
         </div>
     </div>
 
-    <!-- chart -->
+    <!-- It takes to retieve weather via API call. So, show loading bar before distributing contents. -->
+    <div class="text-center" *ngIf="showLoadingBar">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
     <div class="container w-chart">
         <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
             [title]="chartOptions.title"></apx-chart>
