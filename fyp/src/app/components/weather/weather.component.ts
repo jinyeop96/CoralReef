@@ -31,7 +31,7 @@ export type ChartOptions = {
 export class WeatherComponent {
   // ------------ Variables ------------ 
   // Search Bar
-  country_code: string = "AU";
+  countryCode: string = "AU";
   location: string = "";
 
   geoCodings: IResult[] = []
@@ -63,20 +63,21 @@ export class WeatherComponent {
         return
       }
 
-      // Filter out locations only in country_code (Australia).
-      // UNCOMMENT the following to allow all locations in the world. // this.geocodingResults = geoCoding.results
-
-      geoCoding.results.forEach(result => {
-        if (result.country_code == this.country_code) {
-          this.geoCodings.push(result)
-        }
-      })
-
+      // Filter out locations only in country_code (Australia)
+      this.geoCodings = geoCoding.results.filter(
+        x => x.country_code == this.countryCode
+      )
 
     });
   }
 
-  onClickGetForecast() {
+  /**
+   * Check if correct option is selected, then
+   * Pass the geolocation to this.getWeatherForecast()
+   * 
+   * @returns None
+   */
+  onClickGetForecast():void {
     const targetGeocoding = this.geoCodings.at(this.dropDownSelected)
     if (targetGeocoding == undefined) {
       alert("No location is selected")
@@ -85,54 +86,81 @@ export class WeatherComponent {
 
     const latitude = targetGeocoding.latitude
     const longitude = targetGeocoding.longitude
-    const area = targetGeocoding.name + ", " + targetGeocoding.admin1 + ", " + this.country_code
+    const area = targetGeocoding.name + ", " + targetGeocoding.admin1 + ", " + this.countryCode
 
     // Get weather forecast
     this.getWeatherForecast(latitude, longitude, area)
   }
 
+  /**
+   * Firstly, check if the location is near the ocean
+   * If so, get the weather
+   * Else, alert user for unavailability
+   * 
+   * @param latitude a latitude of searching location
+   * @param longitude a longitude of searching location
+   * @param area the name of the location
+   */
   private getWeatherForecast(latitude: number, longitude: number, area: string) {
+    // 1. Check if the location is near the ocean
+    this.apiService.getMarineForcast(latitude, longitude).subscribe({
+      next: _ => {
+        // 2. Get weather of the location
+        this.apiService.getWeatherForecast(latitude, longitude, this.forecastDays).subscribe({
+          next: res => {
+            const weather: IWeatherForecast = res.hourly
+            const refinedWeather = this.globalService.refineWeatherForecast(weather);
 
-    this.apiService.getWeatherForecast(latitude, longitude, this.forecastDays).subscribe(res => {
-      const weather: IWeatherForecast = res.hourly
-      const refinedWeather = this.globalService.refineWeatherForecast(weather);
-
-      // Temperature Average
-      this.tempAvg = refinedWeather.temperature.reduce((accum, temp) => accum + temp.y, 0) /
-        refinedWeather.temperature.length;
-      this.tempAvg = Number(this.tempAvg.toFixed(2)) // up to 2 decimal places.
-
-
-      // Process to build chart
-      const chartSeries = [{
-        name: "Temperature",
-        data: refinedWeather.temperature
-      }, {
-        name: "Precipitation",
-        data: refinedWeather.precipitation
-      }, {
-        name: "Precipitation Probability",
-        data: refinedWeather.precipitation_probability
-      }, {
-        name: "Wind Speed",
-        data: refinedWeather.windspeed
-      }]
-
-      const chartTitle = "7 day weather forecast in " + area
-
-      // Build Visualisation
-      this.showVisualisation = true;
-
-      // Display Windy Map
-      setWindyMap(latitude, longitude);
-
-      // Display Chart
-      this.buildChart(chartSeries, chartTitle)
+            // Temperature Average
+            this.tempAvg = refinedWeather.temperature.reduce((accum, temp) => accum + temp.y, 0)
+            this.tempAvg /= refinedWeather.temperature.length;
+            this.tempAvg = Number(this.tempAvg.toFixed(2)) // up to 2 decimal places.
 
 
-    });
+            // Process to build chart
+            const chartSeries = [{
+              name: "Temperature",
+              data: refinedWeather.temperature
+            }, {
+              name: "Precipitation",
+              data: refinedWeather.precipitation
+            }, {
+              name: "Precipitation Probability",
+              data: refinedWeather.precipitation_probability
+            }, {
+              name: "Wind Speed",
+              data: refinedWeather.windspeed
+            }]
+
+            const chartTitle = "7 day weather forecast in " + area
+
+            // Build Visualisation
+            this.showVisualisation = true;
+
+            // Display Windy Map
+            setWindyMap(latitude, longitude);
+
+            // Display Chart
+            this.buildChart(chartSeries, chartTitle)
+          },
+          error: _ => {
+            alert("Something went wrong! Please try again!");
+          }
+        });
+      },
+      error: _ => {
+        // Alert msg if the location is not near sea.
+        alert("Coral reefs live under water!");
+      }
+    })
   }
 
+  /**
+   * Build the chart
+   * 
+   * @param chartSeries data used for building the chart
+   * @param chartTitle the title of the chart
+   */
   private buildChart(chartSeries: any[], chartTitle: string) {
     // Build graph
     this.chartOptions = {

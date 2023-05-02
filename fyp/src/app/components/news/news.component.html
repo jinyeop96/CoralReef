@@ -9,6 +9,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- It takes to retieve news via API call. So, show loading bar before distributing contents. -->
+        <div class="text-center" *ngIf="showLoadingBar">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
         <div class="row gx-5">
             <!-- Card 1 -->
             <div class="col-lg-4 mb-5" *ngFor="let article of articles">
@@ -43,7 +51,8 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item">
-                <button type="button" class="page-link" tabindex="-1" (click)="onClickMore()" *ngIf="!allArticlesLoaded">Load More</button>
+                <button type="button" class="page-link" tabindex="-1" (click)="onClickMore()"
+                    *ngIf="!allArticlesLoaded">Load More</button>
             </li>
         </ul>
     </nav>

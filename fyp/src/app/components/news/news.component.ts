@@ -13,6 +13,7 @@ export class NewsComponent implements OnInit {
   articles: INews[] = [];
   articlesLoaded: number = 0;
   allArticlesLoaded: boolean = false;
+  showLoadingBar: boolean = true;
   rows: number = 2
   cols: number = 3
 
@@ -48,15 +49,13 @@ export class NewsComponent implements OnInit {
         
       })
 
-      
-
-      
-
+      // Set to all articles
       this.allActicles = res.articles;
 
 
       // Upon loading the page, distibute the first a few news
       this.onClickMore();
+      this.showLoadingBar = false;
     })
   }
   onClickMore() {
