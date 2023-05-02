@@ -51,10 +51,10 @@ export class LiveDataComponent implements AfterViewInit{
 
   // Inject dependency
   constructor(private apiService: ApiService, private globalService: GlobalService) {
-    // let myScriptElement: HTMLScriptElement;
-    // myScriptElement = document.createElement("script");
-    // myScriptElement.src = "../../../assets/js/windy_map/script.js";
-    // document.body.appendChild(myScriptElement);
+    let myScriptElement: HTMLScriptElement;
+    myScriptElement = document.createElement("script");
+    myScriptElement.src = "../../../assets/js/windy_map/script.js";
+    document.body.appendChild(myScriptElement);
     // var ifrm = document.createElement("iframe");
     // ifrm.setAttribute("src", this.path);
     // ifrm.style.width = "100%";

@@ -124,7 +124,7 @@ export class WeatherComponent {
       this.showVisualisation = true;
 
       // Display Windy Map
-      setWindyMap(latitude, longitude);
+      // setWindyMap(latitude, longitude);
 
       // Display Chart
       this.buildChart(chartSeries, chartTitle)

@@ -28,5 +28,4 @@ setWindyMap = (lat, lon) => {
         //     .setContent('Hello World')
         //     .openOn(map);
     });
-
 }

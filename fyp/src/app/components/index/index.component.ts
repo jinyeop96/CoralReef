@@ -3,6 +3,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { IWeatherForecast } from 'src/app/global/interfaces';
 import { GlobalService } from 'src/app/services/global.service';
 
+declare function setWindyMap(lat: number, lon: number): void;
+
 // ApexCharts
 import {
   ChartComponent,
@@ -47,6 +49,8 @@ export class IndexComponent implements OnInit {
       const location = res.city;
       const forecastDays = 1;
 
+      
+
       // Get the weather forecast.
       this.apiService.getWeatherForecast(lat, long, forecastDays).subscribe( res => {
           const weather: IWeatherForecast = res.hourly
@@ -70,7 +74,8 @@ export class IndexComponent implements OnInit {
           this.chartTitle = "today's weather in " + location;
 
           this.buildChart(chartSeries)
-
+          // Display Windy Map
+          setWindyMap(lat, long);
           })
     })
     
