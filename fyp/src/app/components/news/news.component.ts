@@ -14,7 +14,7 @@ export class NewsComponent implements OnInit {
   articles: INews[] = [];
   articlesLoaded: number = 0;
   showMoreButton: boolean = false;
-  showSortingButton: boolean = false;
+  showFilterButton: boolean = false;
   showLoadingBar: boolean = true;
   rows: number = 2
   cols: number = 3
@@ -59,7 +59,7 @@ export class NewsComponent implements OnInit {
       this.onClickMore();
       this.showLoadingBar = false;
       this.showMoreButton = true;
-      this.showSortingButton = true;
+      this.showFilterButton = true;
     })
   }
 
