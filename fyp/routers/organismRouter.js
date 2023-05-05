@@ -8,6 +8,13 @@ router.get('/', (req, res) => {
     db.getByObj("organism", { genus: req.query.genus }).then(result => {
       res.json(result);
     });
+});
+
+router.get('/genus', (req, res) => {
+  db.getAllCorals("organism").then(result => {
+    const genus = result.map(item => item.genus).sort();
+    res.json(genus);
+  });
 })
 
 module.exports = router;

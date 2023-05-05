@@ -14,11 +14,10 @@ export class NewsComponent implements OnInit {
   articles: INews[] = [];
   articlesLoaded: number = 0;
   showMoreButton: boolean = false;
-  showFilterButton: boolean = false;
+  showSortingButton:boolean = false;
   showLoadingBar: boolean = true;
   rows: number = 2
   cols: number = 3
-  filterButtonName: string = "Papular"
 
 
   numOfWordsForDescription: number = 30;
@@ -33,7 +32,7 @@ export class NewsComponent implements OnInit {
 
       // let tempDate = new Date()
 
-      res.articles.forEach((article, i) => {
+      res.articles.forEach(article => {
         // 1. Pre-process description to have maximum length
         // Split the description by space 
         const splitWords = article.description.split(" ", this.numOfWordsForDescription);
@@ -46,9 +45,7 @@ export class NewsComponent implements OnInit {
         // 2. Preprocess the published date.
         const articleDate = new Date(article.publishedAt);
         article.publishedAt = this.globalService.getDateInDDMMMYYYY(articleDate);
-
-        // 3. Save the papularity in acsending order
-        article.papularity = i
+        
       })
 
       // Set to all articles
@@ -59,7 +56,7 @@ export class NewsComponent implements OnInit {
       this.onClickMore();
       this.showLoadingBar = false;
       this.showMoreButton = true;
-      this.showFilterButton = true;
+      this.showSortingButton = true;
     })
   }
  
@@ -77,51 +74,8 @@ export class NewsComponent implements OnInit {
     this.articlesLoaded = to
 
     // If all articles loaded, disable the button
-    if (this.allActicles.length <= to) {
+    if (this.allActicles.length <= to){
       this.showMoreButton = false
     }
   }
-
-  onFilterClicked(filterBy: string) {
-    this.filterButtonName = filterBy
-
-    this.articles = []
-    this.articlesLoaded = 0
-
-    if (filterBy == 'popular') {
-      this.allActicles.sort((a: INews, b: INews) => {
-        return a.papularity - b.papularity
-      });
-    }
-
-    if (filterBy == 'random') {
-      this.shuffleArray(this.allActicles)
-    }
-
-    if (filterBy == 'oldest') {
-      this.allActicles.sort((a: INews, b: INews) => {
-        return new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
-      });
-    }
-
-    if (filterBy == 'newest') {
-      this.allActicles.sort((a: INews, b: INews) => {
-        return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-      });
-    }
-
-    this.onClickMore()
-
-  }
-
-  /* Randomize array in-place using Durstenfeld shuffle algorithm */
-  shuffleArray(array: INews[]) {
-    for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-  }
-
 }
