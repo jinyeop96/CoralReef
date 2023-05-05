@@ -40,3 +40,7 @@
     border-radius: 0%;
     border-color: transparent;
 }
+
+.alert-custom {
+    background-color: #f25a68;
+}
