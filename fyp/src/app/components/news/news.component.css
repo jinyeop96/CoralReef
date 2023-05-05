@@ -1,5 +1,11 @@
+/* .news-image-custom {
+    height: 35%;
+} */
+
+.btn-group-custom {
+    margin-bottom: 3%;
+}
 
 .btn-custom {
     background-color: #f25a68;
-    margin-bottom: 3%;
 }

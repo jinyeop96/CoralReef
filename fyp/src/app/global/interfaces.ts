@@ -63,8 +63,6 @@ export interface INews {
     url: string,
     description: string,
     publishedAt: string,
-    urlToImage: string,
-    category: string[],
-    papularity: number
-
+    urlToImage: string
+    category: string[]
 }

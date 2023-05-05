@@ -10,19 +10,17 @@
             </div>
         </div>
 
-
-        <div class="dropdown" *ngIf="showFilterButton">
-            <button class="btn btn-custom btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                {{filterButtonName}}
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" (click)="onFilterClicked('popular')">Papular</a></li>
-                <li><a class="dropdown-item" (click)="onFilterClicked('random')">Random</a></li>
-                <li><a class="dropdown-item" (click)="onFilterClicked('newest')">Newest</a></li>
-                <li><a class="dropdown-item" (click)="onFilterClicked('oldest')">Oldest</a></li>
-            </ul>
-        </div>
+        <!-- <div class="btn-group btn-group-custom btn-group-toggle" data-toggle="buttons" *ngIf="showSortingButton">
+            <label class="btn btn-secondary active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+            </label>
+        </div> -->
 
         <!-- It takes to retieve news via API call. So, show loading bar before distributing contents. -->
         <div class="text-center" *ngIf="showLoadingBar">

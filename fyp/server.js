@@ -2,7 +2,7 @@
 const express = require("express");
 const path = require('path')
 
-// ############# Router Declaration ############# 
+// ############# Router Declaration #############
 // Define routes at the bottom
 const loginRouter = require('./routers/loginRouter'); // David
 const chartRouter = require('./routers/chartRouter'); // Jin
@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/login", loginRouter); // David
 app.use("/chart", chartRouter); // Jin
 app.use("/corals", coralsRouter);
-app.use("/api/organism", organismRouter);// Oliver
+app.use("/organism", organismRouter);// Oliver
 
 
 // Angular configures # in URL. This requires no configuration on server side.
