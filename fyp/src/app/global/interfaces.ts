@@ -23,7 +23,7 @@ export interface IWeatherForecast {
     precipitation: number[],
     windspeed_10m: number[]
 }
-
+ 
 export interface IMarine{
     hourly: IMarineForecast
 }
