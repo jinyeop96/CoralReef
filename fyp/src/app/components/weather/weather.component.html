@@ -6,7 +6,7 @@
             An increase in the air temperature will cause water temperatures to increase as well. As water temperatures
             increase, water pollution problems will increase, and many aquatic habitats will be negatively affected.
         </p>
-        Reference :
+        Reference : 
         <a
             href="https://oceanservice.noaa.gov/facts/coralwaters.html#:~:text=Reef%2Dbuilding%20corals%20cannot%20tolerate,%C2%B0%20Celsius)%20for%20short%20periods.">
             National Ocean Service
@@ -54,25 +54,13 @@
                         </option>
                     </select>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button"
-                            (click)="onClickGetForecast()">GO</button>
+                        <button class="btn btn-outline-secondary" type="button" (click)="onClickGetForecast()">GO</button>
                     </div>
                 </div>
             </div>
 
-            <!-- It takes to retieve news via API call. So, show loading bar before distributing contents. -->
-            <div class="text-center"  *ngIf="showLoading">
-                <div class="spinner-border" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
 
-            <!-- Display alert message if marine data is unavilable -->
-            <div class="alert alert-custom alert-secondary" role="alert" *ngIf="showAlertMsg">
-                {{alertMsg}}
-            </div>
 
-            <!-- Display the visualisation -->
             <div *ngIf="showVisualisation">
                 <!-- Emoji -->
                 <div class="visualisation">
@@ -141,6 +129,10 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
                 </div>
 
                 <!-- Forecast chart -->

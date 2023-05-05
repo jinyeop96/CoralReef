@@ -2,6 +2,10 @@
   margin-right: 10px;
 }
 
+.filter {
+  margin-right: 10px;
+}
+
 .content {
   display: flex;
 }
