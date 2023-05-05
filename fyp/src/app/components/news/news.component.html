@@ -11,7 +11,6 @@
         </div>
 
 
-
         <div class="dropdown" *ngIf="showFilterButton">
             <button class="btn btn-custom btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -24,7 +23,6 @@
                 <li><a class="dropdown-item" (click)="onFilterClicked('oldest')">Oldest</a></li>
             </ul>
         </div> 
-
 
         <!-- It takes to retieve news via API call. So, show loading bar before distributing contents. -->
         <div class="text-center" *ngIf="showLoadingBar">
