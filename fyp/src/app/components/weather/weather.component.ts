@@ -38,11 +38,15 @@ export class WeatherComponent {
   dropDownSelected: number = -1;
   forecastDays: number = 7;
   tempAvg: number = -1;
+  showAlertMsg: boolean = false
+  alertMsg: string = ""
+  showLoading: boolean = false
+  showVisualisation: boolean = false;
 
   // Chart
   @ViewChild("chart") chart: ChartComponent | any;  // Chart variable
   public chartOptions: Partial<ChartOptions> | any;
-  showVisualisation: boolean = false;
+  
 
   // ------------ Constructor ------------ 
   constructor(private apiService: ApiService, private globalService: GlobalService) { }
@@ -80,9 +84,14 @@ export class WeatherComponent {
   onClickGetForecast():void {
     const targetGeocoding = this.geoCodings.at(this.dropDownSelected)
     if (targetGeocoding == undefined) {
-      alert("No location is selected")
+      this.showAlertMsg = true;
+      this.alertMsg = "No location selected"
       return
     }
+    // Remove the alert message upon user wants to get a new data 
+    this.showAlertMsg = false; 
+    this.showLoading = true;
+    this.showVisualisation = false;
 
     const latitude = targetGeocoding.latitude
     const longitude = targetGeocoding.longitude
@@ -90,6 +99,8 @@ export class WeatherComponent {
 
     // Get weather forecast
     this.getWeatherForecast(latitude, longitude, area)
+
+    this.showLoading = false;
   }
 
   /**
@@ -150,7 +161,9 @@ export class WeatherComponent {
       },
       error: _ => {
         // Alert msg if the location is not near sea.
-        alert("Coral reefs live under water!");
+        this.showAlertMsg = true
+        this.alertMsg = "Coral reefs live under water!"
+        
       }
     })
   }
