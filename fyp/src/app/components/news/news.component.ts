@@ -62,7 +62,7 @@ export class NewsComponent implements OnInit {
       this.showFilterButton = true;
     })
   }
-
+ 
   /**
    * number of rows * cols news are shown at a time.
    * If this is invoked, next rows * cols of news will be displayed.

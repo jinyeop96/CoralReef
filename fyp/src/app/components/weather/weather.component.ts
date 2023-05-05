@@ -21,7 +21,7 @@ export type ChartOptions = {
   chart: ApexChart;
   xaxis: ApexXAxis;
   title: ApexTitleSubtitle;
-};
+}; 
 
 @Component({
   selector: 'app-weather',
