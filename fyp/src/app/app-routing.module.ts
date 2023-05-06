@@ -13,11 +13,13 @@ import { MapComponent } from './components/map/map.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { MarineComponent } from './components/marine/marine.component';
 import { SearchComponent } from "./components/search/search.component";
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent},
   { path: 'about', component: AboutComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
   { path: 'live-data', component: LiveDataComponent},
   { path: 'weather', component: WeatherComponent},
   { path: 'marine', component: MarineComponent},

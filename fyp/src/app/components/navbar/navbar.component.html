@@ -36,6 +36,17 @@
                         <li><a class="dropdown-item" routerLink="climate-change" [queryParams]="{'title': 'Historical Data'}">Historical data</a></li>
                     </ul>
                 </li>
+                <li class="nav-item" *ngIf="!userInfo">
+                    <a class="nav-link" routerLink="login">Login</a>
+                </li>
+                <li class="nav-item dropdown" *ngIf="userInfo">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{userInfo}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a (click)="logout()" class="dropdown-item">log out</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

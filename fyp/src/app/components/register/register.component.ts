@@ -1,0 +1,43 @@
+import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+interface User {
+    user_name: string,
+    user_pwd: string,
+    confirmPassword: string,
+}
+@Component({
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
+})
+export class RegisterComponent {
+    constructor(private http: HttpClient) { }
+    user: User = {
+        user_name: "",
+        user_pwd: "",
+        confirmPassword: "",
+    }
+    register() {
+        if (this.user.confirmPassword == this.user.user_pwd) {
+            var obj = {
+                user_name: "",
+                user_pwd: "",
+            }
+            obj.user_name = this.user.user_name
+            obj.user_pwd = this.user.user_pwd
+
+            this.http.post('/api/login/register', obj).subscribe((response: any) => {
+                if (response.message == "success") {
+                    console.log("注册成功");
+
+                } else {
+                    console.log("注册失败");
+
+                }
+            });
+            return;
+        }
+        alert("The two passwords that you entered do not match!");
+
+    }
+}

@@ -35,6 +35,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import { HeaderComponent } from './components/header/header.component';
 import {MatSelectModule} from "@angular/material/select";
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {MatSelectModule} from "@angular/material/select";
     WeatherComponent,
     MarineComponent,
     SearchComponent,
-    HeaderComponent
+    HeaderComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
