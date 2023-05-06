@@ -10,4 +10,5 @@ export class MapService {
   getCorals() {
     return this.http.get('/corals_return.json');
   }
+  user: any;
 }

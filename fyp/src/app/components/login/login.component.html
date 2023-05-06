@@ -1,15 +1,20 @@
-<div>
-<form action="">
-    userName：<input name="username" type="text" [(ngModel)]="user.user_name"/>
-    <br/>
-   password： <input name="password" type="text" [(ngModel)]="user.user_pwd"/>
-   <br/>
-   confirm password： <input name="confirmPassword" type="password" [(ngModel)]="user.confirmPassword"/>
-   <br/>
-    <input name="name" type="text" [(ngModel)]="user.name"/>
-    <input name="remark" type="text" [(ngModel)]="user.remark"/>
-    <button (click)="register()">register</button>
-  <button nbButton>Click me!</button>
-
-</form>
+<div style="width: 500px;margin: 30px auto">
+    <div class="mb-3 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">UserName：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="staticEmail" [(ngModel)]="user.user_name">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password：</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword" [(ngModel)]="user.user_pwd">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <div class="d-grid gap-2">
+            <button (click)="login()" class="btn btn-primary" type="button">login</button>
+        </div>
+    </div>
+    <a class="nav-link" routerLink="/register">go to register</a>
 </div>

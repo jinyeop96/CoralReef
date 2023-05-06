@@ -6,8 +6,8 @@
             <h2>The distribution information of coral reefs will be displayed here</h2>
         </div>
         <div class="tip" *ngFor="let item of list.slice(0,15)">
-            <h5 class="card-title">{{item.scientific_name}}</h5>
-            <div class="card-text">{{item.family}}</div>
+            <div class="card-title">{{item.scientific_name}}</div>
+            <div class="card-text" style="font-size: 12px;">{{item.family}}</div>
         </div>
         <span *ngIf="list.length>15" class="random">Randomly display 15 bars</span>
     </div>
