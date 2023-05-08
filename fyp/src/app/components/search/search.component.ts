@@ -10,6 +10,7 @@ export class SearchComponent implements OnInit {
   genus: string[] = [];
   searchText = "";
   organisms: any = [];
+  image = "assets/images/coral4.png";
 
   constructor(private http: HttpClient){} // Dependency Injection
 
@@ -24,15 +25,24 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch() {
-    console.log(this.searchText);
     this.http.get("/organism?genus=" + this.searchText).subscribe((res: any) => {
       this.organisms = res;
     });
+    this.searchImageAPI();
   }
 
   filterChange(value: string) {
     this.http.get("/organism?genus=" + value).subscribe((res: any) => {
       this.organisms = res;
     });
+    this.searchImageAPI();
+  }
+
+  searchImageAPI() {
+    this.http.get("https://api.unsplash.com/photos/random?query=coral reef&client_id=H7dAvU5LmvCYCAN3npjukaTIu1gbEPA2R2--uwlwjX8&count=1").subscribe((res: any) => {
+      if (res && res.length > 0) {
+        this.image = res[0].urls.full;
+      }
+    })
   }
 }
