@@ -28,11 +28,9 @@ export class RegisterComponent {
 
             this.http.post('/api/login/register', obj).subscribe((response: any) => {
                 if (response.message == "success") {
-                    console.log("注册成功");
-
+                    alert("sign up successful");
                 } else {
-                    console.log("注册失败");
-
+                    alert("sign up failed");
                 }
             });
             return;
