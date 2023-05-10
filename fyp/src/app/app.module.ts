@@ -36,6 +36,8 @@ import {MatCardModule} from "@angular/material/card";
 import { HeaderComponent } from './components/header/header.component';
 import {MatSelectModule} from "@angular/material/select";
 import { RegisterComponent } from './components/register/register.component';
+import { CoralIntroComponent } from './components/coral-intro/coral-intro.component';
+import { CoralCaringComponent } from './components/coral-caring/coral-caring.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { RegisterComponent } from './components/register/register.component';
     MarineComponent,
     SearchComponent,
     HeaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    CoralIntroComponent,
+    CoralCaringComponent
   ],
   imports: [
     BrowserModule,

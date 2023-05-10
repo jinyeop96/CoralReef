@@ -23,7 +23,8 @@ export class LoginComponent {
         this.http.post('/api/login/login', this.user).subscribe((response: any) => {
             if (response.message == "success") {
                 this.map.user = this.user.user_name;
-                this.router.navigate([''])
+                localStorage.setItem('user', this.user.user_name)
+                this.router.navigate(['']);
             } else {
                 alert("Wrong account or password");
             }

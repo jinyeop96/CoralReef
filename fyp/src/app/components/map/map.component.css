@@ -1,19 +1,29 @@
-.coral-right {
+.wrap {
+    padding: 30px;
+    background-color: #f9f9f9;
+}
+
+.box {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     margin-left: 20px;
     border-radius: 20px;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     border: 2px solid rgb(18, 211, 217);
     width: 600px;
-    padding: 20px
+    height: 78vh;
+    padding: 20px;
+    overflow: auto;
+    padding-top: 60px;
 }
 
-/* .coral-right h2{
-    text-align: center;
-} */
+.coral-right {
+    position: relative;
+    padding-bottom: 30px;
+}
+
 .random {
     position: absolute;
     right: 10px;
@@ -21,7 +31,7 @@
 }
 
 .tip {
-    width: 160px;
+    width: 230px;
     height: 60px;
     margin: 10px;
     padding: 10px;
@@ -29,4 +39,20 @@
     border-radius: 10px;
     background: #fff;
     box-shadow: rgb(0 0 0 / 20%) 0px 5px 5px -3px, rgb(0 0 0 / 14%) 0px 8px 10px 1px, rgb(0 0 0 / 12%) 0px 3px 14px 2px
+}
+
+.notice {
+    position: absolute;
+    top: 5px;
+}
+
+.notice2 {
+    top: 25px;
+}
+
+.down {
+    position: absolute;
+    top: 80px;
+    font-size: 12px;
+    left: 480px;
 }

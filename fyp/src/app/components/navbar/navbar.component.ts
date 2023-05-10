@@ -14,6 +14,7 @@ export class NavbarComponent {
   }
   logout() {
     this.map.user = null;
+    localStorage.removeItem('user');
   }
 }
 
