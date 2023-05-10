@@ -154,11 +154,6 @@
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Montipora aequituberculata",
-                        "family": "Acroporidae"
-                    },
-                    {
-                        "state_province": "Queensland",
                         "scientific_name": "Montipora foveolata",
                         "family": "Acroporidae"
                     },
@@ -829,7 +824,7 @@
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Acanthogorgia sp. B [SS200702, 2008]",
+                        "scientific_name": "Acanthogorgia",
                         "family": "Acanthogorgiidae"
                     },
                     {
@@ -844,12 +839,12 @@
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Echinogorgia sp. A [SS200510, 2008]",
+                        "scientific_name": "Echinogorgia",
                         "family": "Plexauridae"
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Stereonephthya sp. A [SS200510, 2008]",
+                        "scientific_name": "Stereonephthya",
                         "family": "Nephtheidae"
                     },
                     {
@@ -894,7 +889,7 @@
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Acanthogorgia sp. A [SS200702, 2008]",
+                        "scientific_name": "Acanthogorgia",
                         "family": "Acanthogorgiidae"
                     },
                     {
@@ -964,7 +959,7 @@
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Dendronephthya sp. P [SS200705, 2008]",
+                        "scientific_name": "Dendronephthya",
                         "family": "Nephtheidae"
                     },
                     {
@@ -984,12 +979,12 @@
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Muricella sp. A [SS200510, 2008]",
+                        "scientific_name": "Muricella",
                         "family": "Acanthogorgiidae"
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Dendronephthya sp. Q [SS200705, 2008]",
+                        "scientific_name": "Dendronephthya",
                         "family": "Nephtheidae"
                     },
                     {
@@ -1009,7 +1004,7 @@
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Dendronephthya sp. L [SS200705, 2008]",
+                        "scientific_name": "Dendronephthya",
                         "family": "Nephtheidae"
                     },
                     {
@@ -3074,7 +3069,7 @@
                     },
                     {
                         "state_province": "Queensland",
-                        "scientific_name": "Porites sp. 1 [Cleveland list, 2001]",
+                        "scientific_name": "Porites2001]",
                         "family": "Poritidae"
                     },
                     {
@@ -3251,11 +3246,6 @@
                         "state_province": "Queensland",
                         "scientific_name": "Anacropora matthaii",
                         "family": "Acroporidae"
-                    },
-                    {
-                        "state_province": "Queensland",
-                        "scientific_name": "Trochocyathus (Trochocyathus) burchae",
-                        "family": "Caryophylliidae"
                     },
                     {
                         "state_province": "Queensland",
@@ -4266,11 +4256,6 @@
                         "state_province": "New South Wales",
                         "scientific_name": "Montipora venosa",
                         "family": "Acroporidae"
-                    },
-                    {
-                        "state_province": "New South Wales",
-                        "scientific_name": "Balanophyllia (Balanophyllia) bairdiana",
-                        "family": "Dendrophylliidae"
                     }
                 ]
             },
@@ -4299,7 +4284,7 @@
                     },
                     {
                         "state_province": "Northern Territory",
-                        "scientific_name": "Solenocaulon sp. A [SS200705, 2008]",
+                        "scientific_name": "Solenocaulon",
                         "family": "Anthothelidae"
                     },
                     {
@@ -4309,7 +4294,7 @@
                     },
                     {
                         "state_province": "Northern Territory",
-                        "scientific_name": "Carijoa sp. A [SS200510, 2008]",
+                        "scientific_name": "Carijoa",
                         "family": "Clavulariidae"
                     },
                     {
@@ -4324,7 +4309,7 @@
                     },
                     {
                         "state_province": "Northern Territory",
-                        "scientific_name": "Versluysia sp. A [SS200705, 2008]",
+                        "scientific_name": "Versluysia",
                         "family": "Acanthogorgiidae"
                     },
                     {
@@ -4354,12 +4339,12 @@
                     },
                     {
                         "state_province": "Northern Territory",
-                        "scientific_name": "Acabaria sp. E [SS200510, 2008]",
+                        "scientific_name": "Acabaria",
                         "family": "Melithaeidae"
                     },
                     {
                         "state_province": "Northern Territory",
-                        "scientific_name": "Muricella sp. A [SS200510, 2008]",
+                        "scientific_name": "Muricella",
                         "family": "Acanthogorgiidae"
                     },
                     {
@@ -4679,7 +4664,7 @@
                     },
                     {
                         "state_province": "Western Australia",
-                        "scientific_name": "Acabaria sp. D [SS200510, 2008]",
+                        "scientific_name": "Acabaria",
                         "family": "Melithaeidae"
                     },
                     {
@@ -6085,11 +6070,6 @@
                     {
                         "state_province": "Western Australia",
                         "scientific_name": "Montipora incrassata",
-                        "family": "Acroporidae"
-                    },
-                    {
-                        "state_province": "Western Australia",
-                        "scientific_name": "Montipora aequituberculata",
                         "family": "Acroporidae"
                     },
                     {

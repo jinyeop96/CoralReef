@@ -1,14 +1,19 @@
-<div style="display: flex;justify-content: center;">
+<div class="wrap" style="display: flex;justify-content: center;position: relative;">
     <div id="map" style="width: 600px;height:80vh;"></div>
+    <p class="text-center down">Login to <a style="color: #00f;" (click)="down()">Download</a> the data set</p>
     <div class="coral-right">
-        <div *ngIf="list.length==0">
-            <h1 style="text-align: center;">Click on different states on the map to view the distribution of coral reefs</h1>
-            <h2>The distribution information of coral reefs will be displayed here</h2>
+        <a style="display: none;" id="link" href="../../../assets//corals-data-modify.csv">download</a>
+        <div class="box">
+            <p *ngIf="list.length!==0" class="notice">Note: Each card will show the Coral's name and family</p>
+            <p *ngIf="list.length!==0" class="notice notice2">Click on the Corals name in each card will show it in details</p>
+            <div *ngIf="list.length==0">
+                <h1 style="line-height: 80px" class="mt-4 text-center">Click on different states on the map to view the distribution of coral reefs</h1>
+            </div>
+            <div class="tip" *ngFor="let item of list">
+                <div class="card-title"><a target="_blank"
+                        [href]="'https://en.wikipedia.org/wiki/'+item.scientific_name">{{item.scientific_name}}</a></div>
+                <div class="card-text" style="font-size: 12px;">{{item.family}}</div>
+            </div>
         </div>
-        <div class="tip" *ngFor="let item of list.slice(0,15)">
-            <div class="card-title">{{item.scientific_name}}</div>
-            <div class="card-text" style="font-size: 12px;">{{item.family}}</div>
-        </div>
-        <span *ngIf="list.length>15" class="random">Randomly display 15 bars</span>
     </div>
 </div>

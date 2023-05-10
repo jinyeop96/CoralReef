@@ -32,7 +32,6 @@
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" routerLink="finding" [queryParams]="{'title': 'Analysis'}">Analysis</a></li>
                         <li><a class="dropdown-item" routerLink="search" [queryParams]="{'title': 'Explore Coral'}">Explore Coral</a></li>
-                        <li><a class="dropdown-item" routerLink="map" [queryParams]="{'title': 'Map'}">Map</a></li>
                         <li><a class="dropdown-item" routerLink="climate-change" [queryParams]="{'title': 'Historical Data'}">Historical data</a></li>
                     </ul>
                 </li>
@@ -40,8 +39,8 @@
                     <a class="nav-link" routerLink="login">Login</a>
                 </li>
                 <li class="nav-item dropdown" *ngIf="userInfo">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{userInfo}}
+                    <a style="color: #f00;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Hi: {{userInfo}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a (click)="logout()" class="dropdown-item">log out</a></li>

@@ -12,12 +12,19 @@ import corals from '../../../assets/json/corals_return.json'
 export class MapComponent {
   constructor(private map: MapService) { }
   list:any = [];
+  userInfo: any = null;
+
+  ngDoCheck() {
+    this.userInfo = this.map.user;
+  }
+  down(){
+    if(this.userInfo){
+      document.getElementById('link')?.click();
+    }else{
+      alert('Please login first')
+    }
+  }
   ngOnInit(): void {
-    console.log(corals)
-    // this.map.getCorals()
-    //   .subscribe(res=>{
-    //     console.log(res)
-    //   })
     var chartDom:any = document.getElementById('map');
     var myChart = echarts.init(chartDom);
     var option;
@@ -69,20 +76,9 @@ export class MapComponent {
 
         left: 'right',
       },
-      // toolbox: {
-      //   show: true,
-      //   //orient: 'vertical',
-      //   left: 'left',
-      //   top: 'top',
-      //   feature: {
-      //     dataView: { readOnly: false },
-      //     restore: {},
-      //     saveAsImage: {}
-      //   }
-      // },
       series: [
         {
-          name: 'Category',
+          name: 'Total types of corals',
           type: 'map',
           roam: true,
           map: 'AUS',
