@@ -1,7 +1,5 @@
 <!-- Header -->
-<!-- Include header in the main page only -->
 <app-header></app-header>
-
 
 <!-- Overview section -->
 <section class="py-5">
@@ -22,7 +20,7 @@
                     <img class="card-img-top" src="../../../assets/images/news.jpeg" alt="..." />
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="news">
+                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="news" [queryParams]="{'title': 'Coral Reef News'}">
                             <br>News for Coral Reefs
                         </a>
                     </div>
@@ -35,7 +33,7 @@
                     <img class="card-img-top" src="../../../assets/images/weather.jpeg" alt="..." />
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">Weather</div>
-                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="weather">
+                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="weather" [queryParams]="{'title': 'Live Monitoring'}">
                             <br>Cheak Current Coral Condition
                         </a>
                     </div>
@@ -48,7 +46,7 @@
                     <img class="card-img-top" src="../../../assets/images/coral4.jpeg" alt="..." />
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">Research</div>
-                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="finding">
+                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="finding" [queryParams]="{'title': 'Analysis'}">
                             <br>Analysis of Australian Coral Reefs
                         </a>
                     </div>
@@ -61,7 +59,7 @@
                     <img class="card-img-top" src="../../../assets/images/coral5.jpeg" alt="..." />
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">Introduction</div>
-                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="intro">
+                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="intro" [queryParams]="{'title': 'Introduction to Coral Reef'}">
                             <br>Introduction of coral reefs
                         </a>
                     </div>
@@ -74,7 +72,7 @@
                     <img class="card-img-top" src="../../../assets/images/caring.jpeg" alt="..." />
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">Caring</div>
-                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="caring">
+                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="caring" [queryParams]="{'title': 'Caring'}">
                             <br>Supporting the Environment 
                         </a>
                     </div>
@@ -87,7 +85,7 @@
                     <img class="card-img-top" src="../../../assets/images/map.jpeg" alt="..." />
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">Map</div>
-                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="map">
+                        <a class="text-decoration-none link-dark stretched-link card-title mb-3" routerLink="map" [queryParams]="{'title': 'Distribution Map'}">
                             <br>The Distribution of Coral Reefs in Australia
                         </a>
                     </div>
