@@ -54,5 +54,6 @@
     position: absolute;
     top: 80px;
     font-size: 12px;
-    left: 480px;
+    left: 50%;
+    margin-left: -200px;
 }
