@@ -20,7 +20,7 @@ export class LoginComponent {
     constructor(public router: Router, private http: HttpClient, private map: MapService) { }
 
     login() {
-        this.http.post('/login/login', this.user).subscribe((response: any) => {
+        this.http.post('/api/login/login', this.user).subscribe((response: any) => {
             if (response.message == "success") {
                 this.map.user = this.user.user_name;
                 localStorage.setItem('user', this.user.user_name)

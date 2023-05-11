@@ -26,7 +26,7 @@ export class RegisterComponent {
             obj.user_name = this.user.user_name
             obj.user_pwd = this.user.user_pwd
             
-            this.http.post('/login/register', obj).subscribe((response: any) => {
+            this.http.post('/api/login/register', obj).subscribe((response: any) => {
                 if (response.message == "success") {
                     alert("sign up successful");
                 } else {
