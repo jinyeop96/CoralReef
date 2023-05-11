@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'live-data', component: LiveDataComponent},
   { path: 'weather', component: WeatherComponent},
   { path: 'marine', component: MarineComponent},
-  { path: 'map', component: MapComponent },
+  { path: 'map', component: MapComponent},
   { path: 'news', component: NewsComponent},
   { path: 'finding', component: OurFindingComponent},
   { path: 'search', component: SearchComponent},
