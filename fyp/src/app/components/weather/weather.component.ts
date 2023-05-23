@@ -76,37 +76,43 @@ export class WeatherComponent {
   }
 
   /**
-   * Check if correct option is selected, then
-   * Pass the geolocation to this.getWeatherForecast()
+   * Checks if correct option is selected.
+   *  If so, pass the correspnding geolocation to this.getWeatherForecast()
+   *  else, alert user with an appropriate message
    * 
    * @returns None
    */
   onClickGetForecast():void {
+    // Check if an option is selected from the drop-down menu
     const targetGeocoding = this.geoCodings.at(this.dropDownSelected)
+
+    // Pre: If not, show the error message 
     if (targetGeocoding == undefined) {
+      
       this.showAlertMsg = true;
       this.alertMsg = "No location selected"
       return
     }
-    // Remove the alert message upon user wants to get a new data 
+
     this.showAlertMsg = false; 
     this.showLoading = true;
     this.showVisualisation = false;
 
+    // Get the geolocaiton for the area
     const latitude = targetGeocoding.latitude
     const longitude = targetGeocoding.longitude
     const area = targetGeocoding.name + ", " + targetGeocoding.admin1 + ", " + this.countryCode
 
-    // Get weather forecast
+    // Invokes a funciton for the weather data
     this.getWeatherForecast(latitude, longitude, area)
 
     this.showLoading = false;
   }
 
   /**
-   * Firstly, check if the location is near the ocean
-   * If so, get the weather
-   * Else, alert user for unavailability
+   * It first validates if the area is seashore or not.
+   *  If so, get the weather data
+   *  Else, alert user for unavailability
    * 
    * @param latitude a latitude of searching location
    * @param longitude a longitude of searching location
@@ -116,19 +122,22 @@ export class WeatherComponent {
     // 1. Check if the location is near the ocean
     this.apiService.getMarineForcast(latitude, longitude).subscribe({
       next: _ => {
-        // 2. Get weather of the location
+        // Area validation passed.
+        // 2. Get weather data for the location
         this.apiService.getWeatherForecast(latitude, longitude, this.forecastDays).subscribe({
           next: res => {
+            // Weather data in JSON format
             const weather: IWeatherForecast = res.hourly
+
+            // Pre-process the Weather to have proper datetime, temperatures etc
             const refinedWeather = this.globalService.refineWeatherForecast(weather);
 
-            // Temperature Average
+            // 1.  Compute for an average temperature (Used for an indicaiton of coral reef condition)
             this.tempAvg = refinedWeather.temperature.reduce((accum, temp) => accum + temp.y, 0)
             this.tempAvg /= refinedWeather.temperature.length;
             this.tempAvg = Number(this.tempAvg.toFixed(2)) // up to 2 decimal places.
 
-
-            // Process to build chart
+            // 2. Create an array for Chart series with pre-processed weather data
             const chartSeries = [{
               name: "Temperature",
               data: refinedWeather.temperature
@@ -142,18 +151,17 @@ export class WeatherComponent {
               name: "Wind Speed",
               data: refinedWeather.windspeed
             }]
-
-            const chartTitle = "7 day weather forecast in " + area
+            
+            // Display Windy Map
+            // setWindyMap(latitude, longitude);
 
             // Build Visualisation
             this.showVisualisation = true;
-
-      // Display Windy Map
-      // setWindyMap(latitude, longitude);
-
+            
             // Display Chart
-            this.buildChart(chartSeries, chartTitle)
+            this.buildChart(chartSeries, "7 day weather forecast in " + area)
           },
+
           error: _ => {
             alert("Something went wrong! Please try again!");
           }

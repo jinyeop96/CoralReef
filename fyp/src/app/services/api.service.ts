@@ -12,7 +12,7 @@ export class ApiService {
   constructor(private http: HttpClient, private globalService: GlobalService) { }
   
   /**
-   * API call to get geographical infomation of an input
+   * Sends a HTTP Get request to Geolocation API server to fetch latitude and longitude.
    * 
    * @param location a location to find geolocation
    * @returns 
@@ -23,12 +23,32 @@ export class ApiService {
     return this.http.get<IGeocoding>(endpoint + parameters);
   }
 
+  /**
+   * Sends a HTTP Get requset to Weather API server to fetch weather forecast.
+   * 
+   * @param latitude a number representing latitude
+   * @param longitude a number representing longitude
+   * @returns 
+   */
   getWeatherForecast(latitude: number, longitude: number, days: number){
+    // End point of API server
     const endpoint = "https://api.open-meteo.com/v1/forecast"
+
+    // Define query parameters
     const parameters = "?latitude="+latitude+"&longitude="+longitude+"&hourly=temperature_2m,precipitation_probability,precipitation,windspeed_10m&forecast_days="+days+"&timezone=auto"
+    
+    // Invoke HTTP request.
+    // ** Note that http.get() returns Observable, so it must be subscribed to received return data
     return this.http.get<IWeather>(endpoint+parameters)
   }
 
+  /**
+   * Sends a HTTP Get requset to Marine Weather API server to fetch marine forecast.
+   * 
+   * @param latitude a number representing latitude
+   * @param longitude a number representing longitude
+   * @returns 
+   */
   getMarineForcast(latitude: number, longitude: number){
     const endpoint = "https://marine-api.open-meteo.com/v1/marine?"
     const parameters = "latitude="+latitude+"&longitude="+longitude+"&hourly=wave_height,swell_wave_height&timezone=auto"
