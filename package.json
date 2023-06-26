@@ -4,6 +4,6 @@
     "lightgallery": "^2.7.1"
   },
   "scripts": {
-    "start": "cd fyp && npm i && ng build && node server.js"
+    "start": "cd fyp && npm start"
   }
 }
